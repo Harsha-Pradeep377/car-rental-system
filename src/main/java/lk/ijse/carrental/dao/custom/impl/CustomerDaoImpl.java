@@ -5,7 +5,9 @@ import lk.ijse.carrental.entity.CustomerEntity;
 import lk.ijse.carrental.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDao {
@@ -42,6 +44,11 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public List<CustomerEntity> getAll() {
-        return null;
+        Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "FROM CustomerEntity";
+        Query<CustomerEntity> queries = session.createQuery(hql, CustomerEntity.class);
+        transaction.commit();
+        return queries.list();
     }
 }
