@@ -34,13 +34,23 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public void update(CustomerEntity entity) {
+        Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(entity);
+
+        transaction.commit();
 
     }
 
     @Override
     public void delete(CustomerEntity entity) {
+        Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(entity);
 
+        transaction.commit();
     }
+
 
     @Override
     public List<CustomerEntity> getAll() {

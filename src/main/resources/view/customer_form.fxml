@@ -21,8 +21,8 @@
       <TextField fx:id="txtNic" layoutX="113.0" layoutY="145.0" promptText="Customer NIC" />
       <TextField fx:id="txtContact" layoutX="113.0" layoutY="211.0" promptText="Contact Number" />
       <Button fx:id="btnSave" layoutX="455.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnSaveOnAction" text="Save" />
-      <Button fx:id="btnUpdate" layoutX="341.0" layoutY="459.0" mnemonicParsing="false" text="Update" />
-      <Button fx:id="btnDelete" layoutX="237.0" layoutY="459.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="btnUpdate" layoutX="341.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update" />
+      <Button fx:id="btnDelete" layoutX="237.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="Delete" />
       <Button fx:id="btnHome" layoutX="618.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" text="Home" />
       <Button layoutX="145.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnClearFieldsOnAction" text="Clear" />
       <TableView fx:id="tblCustomer" layoutX="63.0" layoutY="264.0" prefHeight="176.0" prefWidth="586.0">

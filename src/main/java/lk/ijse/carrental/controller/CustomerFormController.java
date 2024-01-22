@@ -145,14 +145,45 @@ public class CustomerFormController {
                txtNic.setText(customerDto.getNic());
                txtContact.setText(customerDto.getContact());
                txtAddress.setText(customerDto.getAddress());
-           }else{
-               new Alert(Alert.AlertType.WARNING,"Customer not found").show();
            }
        } catch (Exception e) {
            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
        }
 
     }
+    @FXML
+    void btnUpdateOnAction(ActionEvent event) {
+        String id = txtId.getText();
+        String name = txtName.getText();
+        String nic = txtNic.getText();
+        String address = txtAddress.getText();
+        String contact = txtContact.getText();
+
+        var custDto = new CustomerDto(id,name,nic,address,contact);
+        try {
+            customerService.updateCustomer(custDto);
+            new Alert(Alert.AlertType.CONFIRMATION,"Customer Updated!").show();
+            clearFields();
+            initialize();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
+
+    }
+    @FXML
+    void btnDeleteOnAction(ActionEvent event) {
+        String id = txtId.getText();
+        try {
+            CustomerDto dto = customerService.search(id);
+            customerService.deleteCustomer(dto);
+            new Alert(Alert.AlertType.CONFIRMATION,"Customer Deleted!").show();
+            clearFields();
+            initialize();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
+    }
+
     @FXML
     void btnClearFieldsOnAction(ActionEvent event) {
         clearFields();

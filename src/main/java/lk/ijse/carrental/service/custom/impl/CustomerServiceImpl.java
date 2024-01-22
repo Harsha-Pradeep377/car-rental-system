@@ -38,4 +38,19 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return customerDtos;
     }
+
+    @Override
+    public void updateCustomer(CustomerDto custDto) {
+        var customerEntity = new CustomerEntity(custDto.getId(),custDto.getName(),custDto.getNic(),custDto.getAddress(),custDto.getContact());
+
+        customerDao.update(customerEntity);
+    }
+
+    @Override
+    public void deleteCustomer(CustomerDto dto) {
+        var custEntity = new CustomerEntity(dto.getId(),dto.getName(),dto.getNic(),dto.getAddress(),dto.getContact());
+        customerDao.delete(custEntity);
+    }
+
+
 }
