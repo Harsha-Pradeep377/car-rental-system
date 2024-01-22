@@ -14,7 +14,7 @@
          </font>
       </Label>
       <TextField fx:id="txtName" layoutX="347.0" layoutY="78.0" promptText="Customer Name" />
-      <TextField fx:id="txtId" layoutX="113.0" layoutY="78.0" promptText="Customer Id" />
+      <TextField fx:id="txtId" layoutX="113.0" layoutY="78.0" onAction="#txtSearchOnAction" promptText="Customer Id" />
       <TextField fx:id="txtAddress" layoutX="347.0" layoutY="145.0" promptText=" Address" />
       <TextField fx:id="txtNic" layoutX="113.0" layoutY="145.0" promptText="Customer NIC" />
       <TextField fx:id="txtContact" layoutX="113.0" layoutY="211.0" promptText="Contact Number" />
@@ -22,5 +22,6 @@
       <Button fx:id="btnUpdate" layoutX="265.0" layoutY="371.0" mnemonicParsing="false" text="Update" />
       <Button fx:id="btnDelete" layoutX="188.0" layoutY="371.0" mnemonicParsing="false" text="Delete" />
       <Button fx:id="btnHome" layoutX="444.0" layoutY="371.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" text="Home" />
+      <Button layoutX="100.0" layoutY="371.0" mnemonicParsing="false" onAction="#btnClearFieldsOnAction" text="Clear" />
    </children>
 </AnchorPane>

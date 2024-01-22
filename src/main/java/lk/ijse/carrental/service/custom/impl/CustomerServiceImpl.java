@@ -17,4 +17,11 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     }
+
+    @Override
+    public CustomerDto search(String custId) {
+        CustomerEntity entity = customerDao.search(custId);
+
+        return new CustomerDto(entity.getId(), entity.getName(), entity.getNic(), entity.getContact(), entity.getAddress());
+    }
 }

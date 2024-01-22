@@ -81,4 +81,26 @@ public class CustomerFormController {
         txtAddress.setText("");
         txtContact.setText("");
      }
+    @FXML
+    void txtSearchOnAction(ActionEvent event) {
+        String custId = txtId.getText();
+       try {
+           CustomerDto customerDto = customerService.search(custId);
+           if(customerDto != null) {
+               txtName.setText(customerDto.getName());
+               txtNic.setText(customerDto.getNic());
+               txtContact.setText(customerDto.getContact());
+               txtAddress.setText(customerDto.getAddress());
+           }else{
+               new Alert(Alert.AlertType.WARNING,"Customer not found").show();
+           }
+       } catch (Exception e) {
+           new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+       }
+
+    }
+    @FXML
+    void btnClearFieldsOnAction(ActionEvent event) {
+        clearFields();
+    }
 }
