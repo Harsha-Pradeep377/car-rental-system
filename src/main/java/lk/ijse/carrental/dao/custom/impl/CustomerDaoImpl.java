@@ -36,7 +36,7 @@ public class CustomerDaoImpl implements CustomerDao {
     public void update(CustomerEntity entity) {
         Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(entity);
+        session.merge(entity);
 
         transaction.commit();
 
@@ -46,7 +46,7 @@ public class CustomerDaoImpl implements CustomerDao {
     public void delete(CustomerEntity entity) {
         Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(entity);
+        session.remove(entity);
 
         transaction.commit();
     }
