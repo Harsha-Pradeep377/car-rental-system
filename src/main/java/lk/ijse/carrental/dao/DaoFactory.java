@@ -1,5 +1,6 @@
 package lk.ijse.carrental.dao;
 
+import lk.ijse.carrental.dao.custom.impl.CategoryDaoImpl;
 import lk.ijse.carrental.dao.custom.impl.CustomerDaoImpl;
 
 public class DaoFactory {
@@ -7,6 +8,8 @@ public class DaoFactory {
         switch (type){
             case CUSTOMER:
                 return (T) new CustomerDaoImpl();
+            case CATEGORY:
+                return (T) new CategoryDaoImpl();
             default:
                 return null;
         }

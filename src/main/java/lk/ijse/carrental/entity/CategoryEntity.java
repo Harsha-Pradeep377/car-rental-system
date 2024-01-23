@@ -12,21 +12,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name="customer")
-public class CustomerEntity {
+@Table(name="car_category")
+public class CategoryEntity {
 
     @Id
+    @Column(name="categoryId")
     private String id;
 
-    @Column(nullable = false)
+    @Column(name="categoryName", nullable = false)
     private String name;
-
-    @Column(nullable = false)
-    private String nic;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String address;
-
-    @Column(nullable = false)
-    private String contact;
 }
