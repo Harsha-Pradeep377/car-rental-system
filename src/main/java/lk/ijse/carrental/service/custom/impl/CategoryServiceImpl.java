@@ -36,6 +36,17 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void updateCategory(CategoryDto catDto) {
+        var categoryEntity = new CategoryEntity(catDto.getId(),catDto.getName());
+
+        categoryDao.update(categoryEntity);
 
     }
+
+    @Override
+    public void deleteCategory(CategoryDto dto) {
+        var catEntity = new CategoryEntity(dto.getId(),dto.getName());
+        categoryDao.delete(catEntity);
+    }
+
+
 }

@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.carrental.dto.CategoryDto;
+import lk.ijse.carrental.dto.CustomerDto;
 import lk.ijse.carrental.service.custom.CategoryService;
 import lk.ijse.carrental.service.custom.ServiceFactory;
 import lk.ijse.carrental.service.custom.ServiceType;
@@ -32,7 +33,6 @@ public class CategoryFormController {
     public void btnSaveOnAction(ActionEvent actionEvent) {
         String id = txtCatId.getText();
         String name = txtCatName.getText();
-
 
         var catDto = new CategoryDto(id, name);
 
@@ -63,7 +63,6 @@ public class CategoryFormController {
         txtCatName.setText("");
     }
 
-
     @FXML
     void txtSearchOnAction(ActionEvent event) {
         String catId = txtCatId.getText();
@@ -79,9 +78,29 @@ public class CategoryFormController {
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
+        String id = txtCatId.getText();
+        String name = txtCatName.getText();
+
+        var catDto = new CategoryDto(id,name);
+        try {
+            categoryService.updateCategory(catDto);
+            new Alert(Alert.AlertType.CONFIRMATION,"Category Updated!").show();
+            clearFields();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
+        String id = txtCatId.getText();
+        try {
+            CategoryDto catdto = categoryService.search(id);
+            categoryService.deleteCategory(catdto);
+            new Alert(Alert.AlertType.CONFIRMATION,"Category Deleted!").show();
+            clearFields();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 
     public void btnClearOnAction(ActionEvent actionEvent) {

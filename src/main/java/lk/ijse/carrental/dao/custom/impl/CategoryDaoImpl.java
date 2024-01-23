@@ -2,7 +2,6 @@ package lk.ijse.carrental.dao.custom.impl;
 
 import lk.ijse.carrental.dao.custom.CategoryDao;
 import lk.ijse.carrental.entity.CategoryEntity;
-import lk.ijse.carrental.entity.CustomerEntity;
 import lk.ijse.carrental.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,11 +31,20 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public void update(CategoryEntity entity) {
+        Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(entity);
 
+        transaction.commit();
     }
 
     @Override
     public void delete(CategoryEntity entity) {
+        Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.remove(entity);
+
+        transaction.commit();
 
     }
 

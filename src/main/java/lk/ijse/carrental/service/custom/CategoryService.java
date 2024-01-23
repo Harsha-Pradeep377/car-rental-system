@@ -3,6 +3,7 @@ package lk.ijse.carrental.service.custom;
 
 
 import lk.ijse.carrental.dto.CategoryDto;
+import lk.ijse.carrental.dto.CustomerDto;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface CategoryService {
     List<CategoryDto> getAll();
 
     void updateCategory(CategoryDto catDto);
+
+    void deleteCategory(CategoryDto dto);
 }
