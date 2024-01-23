@@ -19,7 +19,7 @@
       <Button fx:id="btnUpdate" layoutX="252.0" layoutY="287.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update" />
       <Button fx:id="btnDelete" layoutX="171.0" layoutY="287.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="Delete" />
       <TextField fx:id="txtCatName" layoutX="307.0" layoutY="100.0" promptText="Category Name" />
-      <TextField fx:id="txtCatId" alignment="CENTER" layoutX="122.0" layoutY="100.0" promptText="Category Id" />
+      <TextField fx:id="txtCatId" alignment="CENTER" layoutX="122.0" layoutY="100.0" onAction="#txtSearchOnAction" promptText="Category Id" />
       <Button fx:id="btnHome" layoutX="485.0" layoutY="287.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" text="Home" />
    </children>
 </AnchorPane>

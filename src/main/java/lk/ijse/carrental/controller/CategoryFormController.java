@@ -63,6 +63,21 @@ public class CategoryFormController {
         txtCatName.setText("");
     }
 
+
+    @FXML
+    void txtSearchOnAction(ActionEvent event) {
+        String catId = txtCatId.getText();
+        try {
+            CategoryDto categoryDto = categoryService.search(catId);
+            if(categoryDto != null) {
+                txtCatName.setText(categoryDto.getName());
+
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
     public void btnUpdateOnAction(ActionEvent actionEvent) {
     }
 

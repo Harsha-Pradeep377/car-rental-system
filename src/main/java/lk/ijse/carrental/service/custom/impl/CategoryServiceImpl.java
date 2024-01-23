@@ -4,7 +4,9 @@ import lk.ijse.carrental.dao.DaoFactory;
 import lk.ijse.carrental.dao.DaoType;
 import lk.ijse.carrental.dao.custom.CategoryDao;
 import lk.ijse.carrental.dto.CategoryDto;
+import lk.ijse.carrental.dto.CustomerDto;
 import lk.ijse.carrental.entity.CategoryEntity;
+import lk.ijse.carrental.entity.CustomerEntity;
 import lk.ijse.carrental.service.custom.CategoryService;
 
 import java.util.List;
@@ -22,7 +24,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDto search(String catId) {
-        return null;
+        CategoryEntity entity = categoryDao.search(catId);
+
+        return new CategoryDto(entity.getId(), entity.getName());
     }
 
     @Override
