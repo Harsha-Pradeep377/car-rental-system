@@ -5,6 +5,7 @@ import lk.ijse.carrental.entity.CategoryEntity;
 import lk.ijse.carrental.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -50,6 +51,11 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public List<CategoryEntity> getAll() {
-        return null;
+        Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "FROM CategoryEntity";
+        Query<CategoryEntity> queries = session.createQuery(hql, CategoryEntity.class);
+        transaction.commit();
+        return queries.list();
     }
 }

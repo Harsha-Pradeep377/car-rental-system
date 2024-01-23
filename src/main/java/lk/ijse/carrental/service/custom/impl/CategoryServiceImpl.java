@@ -4,11 +4,10 @@ import lk.ijse.carrental.dao.DaoFactory;
 import lk.ijse.carrental.dao.DaoType;
 import lk.ijse.carrental.dao.custom.CategoryDao;
 import lk.ijse.carrental.dto.CategoryDto;
-import lk.ijse.carrental.dto.CustomerDto;
 import lk.ijse.carrental.entity.CategoryEntity;
-import lk.ijse.carrental.entity.CustomerEntity;
 import lk.ijse.carrental.service.custom.CategoryService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryServiceImpl implements CategoryService {
@@ -31,7 +30,13 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDto> getAll() {
-        return null;
+        List<CategoryDto> categoryDtos = new ArrayList<>();
+        List<CategoryEntity> categoryEntities = categoryDao.getAll();
+        for(CategoryEntity entity : categoryEntities){
+            CategoryDto dto = new CategoryDto(entity.getId(), entity.getName());
+            categoryDtos.add(dto);
+        }
+        return categoryDtos;
     }
 
     @Override

@@ -1,21 +1,27 @@
 package lk.ijse.carrental.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.carrental.dto.CategoryDto;
-import lk.ijse.carrental.dto.CustomerDto;
+import lk.ijse.carrental.dto.tm.CategoryTm;
 import lk.ijse.carrental.service.custom.CategoryService;
 import lk.ijse.carrental.service.custom.ServiceFactory;
 import lk.ijse.carrental.service.custom.ServiceType;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class CategoryFormController {
@@ -28,8 +34,42 @@ public class CategoryFormController {
     @FXML
     private TextField txtCatName;
 
+    @FXML
+    private TableColumn<?, ?> colCatId;
+
+    @FXML
+    private TableColumn<?, ?> colCatName;
+
+    @FXML
+    private TableView<CategoryTm> tblCategory;
+
     private CategoryService categoryService = ServiceFactory.getService(ServiceType.CATEGORY);
 
+    public void initialize() {
+        setCellValueFactory();
+        getAllCategories();
+    }
+
+    private void setCellValueFactory() {
+        colCatId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colCatName.setCellValueFactory(new PropertyValueFactory<>("name"));
+    }
+
+    private void getAllCategories() {
+        try {
+            ObservableList<CategoryTm> observableList = FXCollections.observableArrayList();
+            List<CategoryDto> categoryDtos = categoryService.getAll();
+
+            for (CategoryDto dto:categoryDtos) {
+                var categoryTm = new CategoryTm(dto.getId(), dto.getName());
+                observableList.add(categoryTm);
+            }
+            tblCategory.setItems(observableList);
+
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
     public void btnSaveOnAction(ActionEvent actionEvent) {
         String id = txtCatId.getText();
         String name = txtCatName.getText();
@@ -40,6 +80,7 @@ public class CategoryFormController {
             categoryService.saveCategory(catDto);
             new Alert(Alert.AlertType.CONFIRMATION,"Category Saved!").show();
             clearFields();
+            initialize();
 
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
@@ -86,6 +127,7 @@ public class CategoryFormController {
             categoryService.updateCategory(catDto);
             new Alert(Alert.AlertType.CONFIRMATION,"Category Updated!").show();
             clearFields();
+            initialize();
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
@@ -98,6 +140,7 @@ public class CategoryFormController {
             categoryService.deleteCategory(catdto);
             new Alert(Alert.AlertType.CONFIRMATION,"Category Deleted!").show();
             clearFields();
+            initialize();
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
