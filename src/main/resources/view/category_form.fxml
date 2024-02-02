@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="categoryNode" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.CategoryFormController">
    <children>
       <Label layoutX="196.0" layoutY="21.0" prefHeight="43.0" prefWidth="208.0" text="Manage Category">
@@ -21,9 +20,9 @@
       <Button fx:id="btnUpdate" layoutX="252.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update" />
       <Button fx:id="btnDelete" layoutX="171.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="Delete" />
       <TextField fx:id="txtCatName" layoutX="307.0" layoutY="100.0" promptText="Category Name" />
-      <TextField fx:id="txtCatId" alignment="CENTER" layoutX="122.0" layoutY="100.0" onAction="#txtSearchOnAction" promptText="Category Id" />
+      <TextField fx:id="txtCatId" alignment="CENTER" layoutX="122.0" layoutY="100.0" promptText="Category Id" />
       <Button fx:id="btnHome" layoutX="487.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" text="Home" />
-      <TableView fx:id="tblCategory" layoutX="111.0" layoutY="153.0" prefHeight="129.0" prefWidth="325.0">
+      <TableView fx:id="tblCategory" layoutX="111.0" layoutY="153.0" onMouseClicked="#tblSearchCategoryOnAction" prefHeight="129.0" prefWidth="325.0">
         <columns>
           <TableColumn fx:id="colCatId" prefWidth="169.0" text="Category Id" />
           <TableColumn fx:id="colCatName" minWidth="0.0" prefWidth="155.0" text="Category Name" />

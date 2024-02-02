@@ -57,8 +57,9 @@ public class CustomerDaoImpl implements CustomerDao {
         Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         String hql = "FROM CustomerEntity";
-        Query<CustomerEntity> queries = session.createQuery(hql, CustomerEntity.class);
+        List<CustomerEntity> entities = session.createQuery(hql, CustomerEntity.class).list();
         transaction.commit();
-        return queries.list();
+        session.close();
+        return entities;
     }
 }

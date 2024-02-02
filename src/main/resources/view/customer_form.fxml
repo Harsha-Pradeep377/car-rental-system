@@ -16,7 +16,7 @@
          </font>
       </Label>
       <TextField fx:id="txtName" layoutX="347.0" layoutY="78.0" promptText="Customer Name" />
-      <TextField fx:id="txtId" layoutX="113.0" layoutY="78.0" onAction="#txtSearchOnAction" promptText="Customer Id" />
+      <TextField fx:id="txtId" layoutX="113.0" layoutY="78.0" promptText="Customer Id" />
       <TextField fx:id="txtAddress" layoutX="347.0" layoutY="145.0" promptText=" Address" />
       <TextField fx:id="txtNic" layoutX="113.0" layoutY="145.0" promptText="Customer NIC" />
       <TextField fx:id="txtContact" layoutX="113.0" layoutY="211.0" promptText="Contact Number" />
@@ -25,7 +25,7 @@
       <Button fx:id="btnDelete" layoutX="237.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="Delete" />
       <Button fx:id="btnHome" layoutX="618.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" text="Home" />
       <Button layoutX="145.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnClearFieldsOnAction" text="Clear" />
-      <TableView fx:id="tblCustomer" layoutX="63.0" layoutY="264.0" prefHeight="176.0" prefWidth="586.0">
+      <TableView fx:id="tblCustomer" layoutX="63.0" layoutY="264.0" onMouseClicked="#tblSearchCustomerOnAction" prefHeight="176.0" prefWidth="586.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="68.0" text="Id" />
           <TableColumn fx:id="colName" prefWidth="153.0" text="Name" />

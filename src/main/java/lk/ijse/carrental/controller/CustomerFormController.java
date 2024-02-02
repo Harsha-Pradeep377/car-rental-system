@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
@@ -135,21 +136,22 @@ public class CustomerFormController {
         txtAddress.setText("");
         txtContact.setText("");
      }
-    @FXML
-    void txtSearchOnAction(ActionEvent event) {
-        String custId = txtId.getText();
-       try {
-           CustomerDto customerDto = customerService.search(custId);
-           if(customerDto != null) {
-               txtName.setText(customerDto.getName());
-               txtNic.setText(customerDto.getNic());
-               txtContact.setText(customerDto.getContact());
-               txtAddress.setText(customerDto.getAddress());
-           }
-       } catch (Exception e) {
-           new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-       }
 
+    @FXML
+    void tblSearchCustomerOnAction(MouseEvent event) {
+        String custId = tblCustomer.getSelectionModel().getSelectedItem().getId();
+        try {
+            CustomerDto customerDto = customerService.search(custId);
+            if(customerDto != null) {
+                txtId.setText(customerDto.getId());
+                txtName.setText(customerDto.getName());
+                txtNic.setText(customerDto.getNic());
+                txtContact.setText(customerDto.getContact());
+                txtAddress.setText(customerDto.getAddress());
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
     @FXML
     void btnUpdateOnAction(ActionEvent event) {

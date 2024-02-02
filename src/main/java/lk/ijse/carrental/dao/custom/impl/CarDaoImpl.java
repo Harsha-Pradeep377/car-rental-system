@@ -1,6 +1,7 @@
 package lk.ijse.carrental.dao.custom.impl;
 
-import lk.ijse.carrental.dao.custom.CategoryDao;
+import lk.ijse.carrental.dao.custom.CarDao;
+import lk.ijse.carrental.entity.CarEntity;
 import lk.ijse.carrental.entity.CategoryEntity;
 import lk.ijse.carrental.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
@@ -9,9 +10,9 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class CategoryDaoImpl implements CategoryDao {
+public class CarDaoImpl implements CarDao {
     @Override
-    public void save(CategoryEntity entity) {
+    public void save(CarEntity entity) {
         Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(entity);
@@ -20,19 +21,18 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public CategoryEntity search(String id) {
+    public CarEntity search(String id) {
         Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        CategoryEntity categoryEntity = session.get(CategoryEntity.class,id);
+        CarEntity carEntity = session.get(CarEntity.class,id);
 
         transaction.commit();
-        session.close();
-        return categoryEntity;
 
+        return carEntity;
     }
 
     @Override
-    public void update(CategoryEntity entity) {
+    public void update(CarEntity entity) {
         Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.merge(entity);
@@ -41,21 +41,20 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public void delete(CategoryEntity entity) {
+    public void delete(CarEntity entity) {
         Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.remove(entity);
 
         transaction.commit();
-
     }
 
     @Override
-    public List<CategoryEntity> getAll() {
+    public List<CarEntity> getAll() {
         Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql = "FROM CategoryEntity";
-        List<CategoryEntity> entities = session.createQuery(hql, CategoryEntity.class).list();
+        String hql = "FROM CarEntity";
+        List<CarEntity> entities = session.createQuery(hql, CarEntity.class).list();
         transaction.commit();
         session.close();
         return entities;

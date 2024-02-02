@@ -1,5 +1,6 @@
 package lk.ijse.carrental.util;
 
+import lk.ijse.carrental.entity.CarEntity;
 import lk.ijse.carrental.entity.CategoryEntity;
 import lk.ijse.carrental.entity.CustomerEntity;
 import org.hibernate.SessionFactory;
@@ -20,6 +21,7 @@ public class SessionFactoryConfiguration {
         Metadata metadata = new MetadataSources(standardRegistry)
                 .addAnnotatedClass(CustomerEntity.class)
                 .addAnnotatedClass(CategoryEntity.class)
+                .addAnnotatedClass(CarEntity.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();
