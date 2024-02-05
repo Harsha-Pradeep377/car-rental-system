@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -37,4 +40,19 @@ public class CarEntity {
     @ManyToOne
     @JoinColumn(name = "categoryId", nullable = false)
     private CategoryEntity categoryEntity;
+
+    @OneToMany(mappedBy = "carEntity", targetEntity = BookingEntity.class)
+    @ToString.Exclude
+    private List<BookingEntity> bookingEntities;
+
+    public CarEntity(String id, String brand, String model, String colour, String vehicleNo, Integer year, Double price, CategoryEntity categoryEntity) {
+        this.id = id;
+        this.brand = brand;
+        this.model = model;
+        this.colour = colour;
+        this.vehicleNo = vehicleNo;
+        this.year = year;
+        this.price = price;
+        this.categoryEntity = categoryEntity;
+    }
 }

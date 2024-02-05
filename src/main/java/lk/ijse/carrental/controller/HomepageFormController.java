@@ -49,5 +49,16 @@ public class HomepageFormController {
         primaryStage.setTitle("Car Form");
     }
 
+    @FXML
+    void btnBookingManageOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/booking_form.fxml"));
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
+        primaryStage.setTitle("Booking Form");
+    }
+
 
 }

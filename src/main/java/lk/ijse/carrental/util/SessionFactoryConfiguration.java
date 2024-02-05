@@ -1,5 +1,6 @@
 package lk.ijse.carrental.util;
 
+import lk.ijse.carrental.entity.BookingEntity;
 import lk.ijse.carrental.entity.CarEntity;
 import lk.ijse.carrental.entity.CategoryEntity;
 import lk.ijse.carrental.entity.CustomerEntity;
@@ -22,6 +23,7 @@ public class SessionFactoryConfiguration {
                 .addAnnotatedClass(CustomerEntity.class)
                 .addAnnotatedClass(CategoryEntity.class)
                 .addAnnotatedClass(CarEntity.class)
+                .addAnnotatedClass(BookingEntity.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();

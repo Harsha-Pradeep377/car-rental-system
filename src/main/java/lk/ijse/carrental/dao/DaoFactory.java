@@ -1,5 +1,6 @@
 package lk.ijse.carrental.dao;
 
+import lk.ijse.carrental.dao.custom.impl.BookingDaoImpl;
 import lk.ijse.carrental.dao.custom.impl.CarDaoImpl;
 import lk.ijse.carrental.dao.custom.impl.CategoryDaoImpl;
 import lk.ijse.carrental.dao.custom.impl.CustomerDaoImpl;
@@ -13,6 +14,8 @@ public class DaoFactory {
                 return (T) new CategoryDaoImpl();
             case CAR:
                 return (T) new CarDaoImpl();
+            case BOOKING:
+                return (T) new BookingDaoImpl();
             default:
                 return null;
         }

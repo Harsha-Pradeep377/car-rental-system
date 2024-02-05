@@ -15,5 +15,6 @@
       <Button fx:id="btnCustomer" layoutX="53.0" layoutY="114.0" mnemonicParsing="false" onAction="#btnCustomerManageOnAction" text="Manage Customer" />
       <Button fx:id="btnCategory" layoutX="46.0" layoutY="176.0" mnemonicParsing="false" onAction="#btnCategoryManageOnAction" text="Manage Category" />
       <Button fx:id="btnCar" layoutX="45.0" layoutY="231.0" mnemonicParsing="false" onAction="#btnCarManageOnAction" prefHeight="25.0" prefWidth="114.0" text="Manage Car" />
+      <Button fx:id="btnBooking" layoutX="45.0" layoutY="302.0" mnemonicParsing="false" onAction="#btnBookingManageOnAction" prefHeight="25.0" prefWidth="111.0" text="Manage Booking" />
    </children>
 </AnchorPane>

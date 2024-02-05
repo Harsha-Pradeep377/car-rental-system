@@ -19,4 +19,17 @@ public class CarDto {
     private Integer year;
     private Double price;
     private String catId;
+    private Boolean isAvailability;
+
+    public CarDto(String id, String brand, String model, String colour, String vehicleNo, Integer year, Double price, String catId) {
+        this.id = id;
+        this.brand = brand;
+        this.model = model;
+        this.colour = colour;
+        this.vehicleNo = vehicleNo;
+        this.year = year;
+        this.price = price;
+        this.catId = catId;
+        this.isAvailability = true;
+    }
 }
