@@ -59,6 +59,8 @@ public class CarFormController {
     @FXML
     private TableColumn<?, ?> colModel;
 
+    @FXML
+    private TableColumn<?, ?> colStatus;
 
     @FXML
     private TextField txtBrand;
@@ -108,6 +110,7 @@ public class CarFormController {
         colYear.setCellValueFactory(new PropertyValueFactory<>("year"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
     private void getAllCars() {
@@ -116,7 +119,7 @@ public class CarFormController {
             List<CarDto> carDtos = carService.getAll();
 
             for (CarDto dto:carDtos) {
-                var carTm = new CarTm(dto.getId(), dto.getBrand(), dto.getModel(), dto.getColour(), dto.getVehicleNo(), dto.getYear(), dto.getPrice(), dto.getCatId());
+                var carTm = new CarTm(dto.getId(), dto.getBrand(), dto.getModel(), dto.getColour(), dto.getVehicleNo(), dto.getYear(), dto.getPrice(), dto.getCatId(),dto.getIsAvailability() ? "Available" : "Not Available");
                 observableList.add(carTm);
             }
             tblCar.setItems(observableList);
@@ -196,8 +199,8 @@ public class CarFormController {
 
     @FXML
     void tblSearchCarOnAction(MouseEvent event) {
-        String id = tblCar.getSelectionModel().getSelectedItem().getId();
         try {
+            String id = tblCar.getSelectionModel().getSelectedItem().getId();
             CarDto carDto = carService.search(id);
             if(carDto != null) {
                 txtId.setText(carDto.getId());
@@ -208,11 +211,6 @@ public class CarFormController {
                 txtYear.setText(Integer.toString(carDto.getYear()));
                 txtPrice.setText(Double.toString(carDto.getPrice()));
                 txtCategory.setText(carDto.getCatId());
-                if (carDto.getIsAvailability()){
-                    txtStatus.setText("Available");
-                }else{
-                    txtStatus.setText("Not Available");
-                }
             }
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

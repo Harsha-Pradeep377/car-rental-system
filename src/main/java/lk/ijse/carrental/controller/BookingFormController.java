@@ -177,8 +177,8 @@ public class BookingFormController {
 
     @FXML
     void tblSearchOnAction(MouseEvent event) {
-        String id = tblBooking.getSelectionModel().getSelectedItem().getId();
         try {
+            String id = tblBooking.getSelectionModel().getSelectedItem().getId();
             BookingDto bookingDto = bookingService.search(id);
             if(bookingDto != null) {
                 txtBookId.setText(bookingDto.getId());

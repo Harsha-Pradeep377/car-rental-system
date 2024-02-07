@@ -42,13 +42,13 @@ public class CarEntity {
     private CategoryEntity categoryEntity;
 
     @Column(nullable = false)
-    private Boolean iaAvailable;
+    private Boolean isAvailability;
 
     @OneToMany(mappedBy = "carEntity", targetEntity = BookingEntity.class)
     @ToString.Exclude
     private List<BookingEntity> bookingEntities;
 
-    public CarEntity(String id, String brand, String model, String colour, String vehicleNo, Integer year, Double price, CategoryEntity categoryEntity, Boolean iaAvailable) {
+    public CarEntity(String id, String brand, String model, String colour, String vehicleNo, Integer year, Double price, CategoryEntity categoryEntity, Boolean isAvailability) {
         this.id = id;
         this.brand = brand;
         this.model = model;
@@ -57,6 +57,6 @@ public class CarEntity {
         this.year = year;
         this.price = price;
         this.categoryEntity = categoryEntity;
-        this.iaAvailable = iaAvailable;
+        this.isAvailability = isAvailability;
     }
 }

@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="carNode" prefHeight="457.0" prefWidth="687.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.CarFormController">
+<AnchorPane fx:id="carNode" prefHeight="457.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.CarFormController">
    <children>
       <Button fx:id="btnClear" layoutX="80.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnClearOnAction" text="Clear" />
       <Button fx:id="btnDelete" layoutX="159.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="Delete" />
       <Button fx:id="btnUpdate" layoutX="249.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update" />
       <Button fx:id="btnSave" layoutX="354.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnSaveOnAction" text="Save" />
       <Button fx:id="btnHome" layoutX="574.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" text="Home" />
-      <TableView fx:id="tblCar" layoutX="32.0" layoutY="285.0" onMouseClicked="#tblSearchCarOnAction" prefHeight="114.0" prefWidth="645.0">
+      <TableView fx:id="tblCar" layoutX="25.0" layoutY="288.0" onMouseClicked="#tblSearchCarOnAction" prefHeight="114.0" prefWidth="724.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="75.0" text="Id" />
           <TableColumn fx:id="colBrand" prefWidth="60.0" text="Brand" />
@@ -27,6 +27,7 @@
             <TableColumn fx:id="colYear" prefWidth="77.0" text="Year" />
             <TableColumn fx:id="colPrice" prefWidth="88.0" text="Price per day" />
             <TableColumn fx:id="colCategory" prefWidth="89.0" text="Category" />
+            <TableColumn fx:id="colStatus" prefWidth="89.0" text="Status" />
 
         </columns>
       </TableView>
@@ -48,6 +49,5 @@
       </Label>
       <Label fx:id="lblCategory" layoutX="481.0" layoutY="216.0" prefHeight="25.0" prefWidth="85.0" />
       <TextField fx:id="txtCategory" alignment="CENTER" layoutX="375.0" layoutY="216.0" prefHeight="25.0" prefWidth="98.0" promptText="Category" />
-      <TextField fx:id="txtStatus" alignment="CENTER" layoutX="87.0" layoutY="254.0" prefHeight="25.0" prefWidth="215.0" promptText="Status" />
    </children>
 </AnchorPane>

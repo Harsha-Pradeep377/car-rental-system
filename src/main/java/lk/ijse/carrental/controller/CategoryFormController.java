@@ -107,8 +107,8 @@ public class CategoryFormController {
 
     @FXML
     void tblSearchCategoryOnAction(MouseEvent event) {
-        String catId = tblCategory.getSelectionModel().getSelectedItem().getId();
         try {
+            String catId = tblCategory.getSelectionModel().getSelectedItem().getId();
             CategoryDto categoryDto = categoryService.search(catId);
             if(categoryDto != null) {
                 txtCatId.setText(categoryDto.getId());

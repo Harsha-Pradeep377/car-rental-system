@@ -139,8 +139,8 @@ public class CustomerFormController {
 
     @FXML
     void tblSearchCustomerOnAction(MouseEvent event) {
-        String custId = tblCustomer.getSelectionModel().getSelectedItem().getId();
         try {
+            String custId = tblCustomer.getSelectionModel().getSelectedItem().getId();
             CustomerDto customerDto = customerService.search(custId);
             if(customerDto != null) {
                 txtId.setText(customerDto.getId());

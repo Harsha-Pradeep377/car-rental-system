@@ -48,7 +48,7 @@ public class CarServiceImpl implements CarService{
                 carEntity.getYear(),
                 carEntity.getPrice(),
                 carEntity.getCategoryEntity().getId(),
-                carEntity.getIaAvailable());
+                carEntity.getIsAvailability());
         return carDto;
     }
 
@@ -57,7 +57,7 @@ public class CarServiceImpl implements CarService{
     List<CarDto> carDtos = new ArrayList<>();
     List<CarEntity> carEntities = carDao.getAll();
         for (CarEntity car : carEntities) {
-            CarDto carDto = new CarDto(car.getId(), car.getBrand(), car.getModel(), car.getColour(), car.getVehicleNo(), car.getYear(), car.getPrice(), car.getCategoryEntity().getId());
+            CarDto carDto = new CarDto(car.getId(), car.getBrand(), car.getModel(), car.getColour(), car.getVehicleNo(), car.getYear(), car.getPrice(), car.getCategoryEntity().getId(), car.getIsAvailability());
             carDtos.add(carDto);
         }
         return carDtos;
@@ -92,7 +92,7 @@ public class CarServiceImpl implements CarService{
     @Override
     public void updateIsAvailability(String carId, boolean availability) {
         CarEntity carEntity = carDao.search(carId);
-        carEntity.setIaAvailable(availability);
+        carEntity.setIsAvailability(availability);
         carDao.update(carEntity);
     }
 }
