@@ -13,18 +13,17 @@
    <children>
       <Button fx:id="btnHome" layoutX="555.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" prefHeight="25.0" prefWidth="81.0" text="Home" />
       <TextField fx:id="txtBookId" layoutX="104.0" layoutY="60.0" promptText="Booking Id" />
-      <TextField fx:id="txtCustId" layoutX="110.0" layoutY="111.0" promptText="Customer Id" />
+      <TextField fx:id="txtCustId" layoutX="562.0" layoutY="60.0" promptText="Customer Id" />
       <TextField fx:id="txtCarId" layoutX="353.0" layoutY="60.0" promptText="Car Id" />
-      <TextField fx:id="txtRate" layoutX="110.0" layoutY="169.0" onAction="#CheckDurationAndCalculateTotalOnAction" promptText="Rate Per Day" />
-      <TextField fx:id="txtAdvance" layoutX="562.0" layoutY="169.0" onAction="#calculateBalanceOnAction" promptText="Advance" />
-      <TextField fx:id="txtTotal" layoutX="344.0" layoutY="169.0" promptText="Total" />
-      <TextField layoutX="562.0" layoutY="60.0" promptText="Availability" />
-      <TextField fx:id="txtBalance" layoutX="110.0" layoutY="224.0" promptText="Balance" />
+      <TextField fx:id="txtRate" layoutX="562.0" layoutY="117.0" onAction="#CheckDurationAndCalculateTotalOnAction" promptText="Rate Per Day" />
+      <TextField fx:id="txtAdvance" layoutX="347.0" layoutY="170.0" onAction="#calculateBalanceOnAction" promptText="Advance" />
+      <TextField fx:id="txtTotal" layoutX="98.0" layoutY="157.0" promptText="Total" />
+      <TextField fx:id="txtBalance" layoutX="555.0" layoutY="170.0" promptText="Balance" />
       <Button fx:id="btnSave" layoutX="487.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="55.0" text="Save" />
       <Button fx:id="btnUpdate" layoutX="387.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="81.0" text="Update" />
       <Button fx:id="btnDelete" layoutX="299.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="63.0" text="Delete" />
-      <DatePicker fx:id="dateBooking" layoutX="331.0" layoutY="111.0" promptText="Booking Date" />
-      <DatePicker fx:id="dateReturning" layoutX="555.0" layoutY="111.0" promptText="Returning Date" />
+      <DatePicker fx:id="dateBooking" layoutX="104.0" layoutY="111.0" promptText="Booking Date" />
+      <DatePicker fx:id="dateReturning" layoutX="344.0" layoutY="111.0" promptText="Returning Date" />
       <Label layoutX="266.0" layoutY="6.0" prefHeight="38.0" prefWidth="192.0" text="Manage Booking">
          <font>
             <Font size="22.0" />

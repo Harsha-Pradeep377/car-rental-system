@@ -17,6 +17,7 @@ import lk.ijse.carrental.dto.CarDto;
 import lk.ijse.carrental.dto.CustomerDto;
 import lk.ijse.carrental.dto.tm.BookingTm;
 import lk.ijse.carrental.dto.tm.CarTm;
+import lk.ijse.carrental.entity.CarEntity;
 import lk.ijse.carrental.service.custom.BookingService;
 import lk.ijse.carrental.service.custom.CarService;
 import lk.ijse.carrental.service.custom.ServiceFactory;
@@ -124,12 +125,17 @@ public class BookingFormController {
         try {
             bookingService.saveBooking(bookingDto);
             new Alert(Alert.AlertType.CONFIRMATION,"Booking details Saved!").show();
+            updateIsAvailability(bookingDto.getCarId(), false);
             clearFields();
             initialize();
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 
+    }
+
+    private void updateIsAvailability(String carId, boolean availability) {
+        carService.updateIsAvailability(carId,availability);
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
@@ -194,7 +200,6 @@ public class BookingFormController {
         txtBookId.setText("");
         txtCustId.setText("");
         txtCarId.setText("");
-        txtAvailability.setText("");
         dateBooking.setValue(null);
         dateReturning.setValue(null);
         txtRate.setText("");

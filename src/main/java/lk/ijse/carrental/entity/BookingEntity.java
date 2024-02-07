@@ -43,4 +43,5 @@ public class BookingEntity {
 
     @Column(nullable = false)
     private Double balance;
+
 }

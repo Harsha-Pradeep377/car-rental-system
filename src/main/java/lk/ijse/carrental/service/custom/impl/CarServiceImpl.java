@@ -29,7 +29,8 @@ public class CarServiceImpl implements CarService{
                 carDto.getVehicleNo(),
                 carDto.getYear(),
                 carDto.getPrice(),
-                categoryEntity);
+                categoryEntity,
+                 carDto.getIsAvailability());
 
        carDao.save(carEntity);
 
@@ -46,7 +47,8 @@ public class CarServiceImpl implements CarService{
                 carEntity.getVehicleNo(),
                 carEntity.getYear(),
                 carEntity.getPrice(),
-                carEntity.getCategoryEntity().getId());
+                carEntity.getCategoryEntity().getId(),
+                carEntity.getIaAvailable());
         return carDto;
     }
 
@@ -73,7 +75,8 @@ public class CarServiceImpl implements CarService{
                 carDto.getVehicleNo(),
                 carDto.getYear(),
                 carDto.getPrice(),
-                categoryEntity);
+                categoryEntity,
+                carDto.getIsAvailability());
 
         carDao.update(carEntity);
 
@@ -82,7 +85,14 @@ public class CarServiceImpl implements CarService{
     @Override
     public void deleteCar(CarDto dto) {
         CategoryEntity category = categoryDao.search(dto.getCatId());
-        var carEntity = new CarEntity(dto.getId(), dto.getBrand(), dto.getModel(), dto.getColour(), dto.getVehicleNo(), dto.getYear(), dto.getPrice(),category);
+        var carEntity = new CarEntity(dto.getId(), dto.getBrand(), dto.getModel(), dto.getColour(), dto.getVehicleNo(), dto.getYear(), dto.getPrice(),category,dto.getIsAvailability());
         carDao.delete(carEntity);
+    }
+
+    @Override
+    public void updateIsAvailability(String carId, boolean availability) {
+        CarEntity carEntity = carDao.search(carId);
+        carEntity.setIaAvailable(availability);
+        carDao.update(carEntity);
     }
 }

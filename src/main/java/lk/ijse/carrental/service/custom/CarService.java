@@ -13,4 +13,6 @@ public interface CarService {
     void updateCar(CarDto carDto);
 
     void deleteCar(CarDto dto);
+
+    void updateIsAvailability(String carId, boolean availability);
 }

@@ -85,6 +85,9 @@ public class CarFormController {
     private TextField txtCategory;
 
     @FXML
+    private TextField txtStatus;
+
+    @FXML
     private Label lblCategory;
 
     private CategoryService categoryService = ServiceFactory.getService(ServiceType.CATEGORY);
@@ -149,7 +152,9 @@ public class CarFormController {
         String catId  = txtCategory.getText();
 
 
+
         var cartDto = new CarDto(id,brand,model,colour,vehicleNo,year,price,catId);
+        cartDto.setIsAvailability(true);
 
         try {
             carService.saveCar(cartDto);
@@ -203,6 +208,11 @@ public class CarFormController {
                 txtYear.setText(Integer.toString(carDto.getYear()));
                 txtPrice.setText(Double.toString(carDto.getPrice()));
                 txtCategory.setText(carDto.getCatId());
+                if (carDto.getIsAvailability()){
+                    txtStatus.setText("Available");
+                }else{
+                    txtStatus.setText("Not Available");
+                }
             }
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

@@ -30,6 +30,5 @@ public class CarDto {
         this.year = year;
         this.price = price;
         this.catId = catId;
-        this.isAvailability = true;
     }
 }
