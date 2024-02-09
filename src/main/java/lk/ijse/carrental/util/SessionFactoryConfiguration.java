@@ -1,9 +1,6 @@
 package lk.ijse.carrental.util;
 
-import lk.ijse.carrental.entity.BookingEntity;
-import lk.ijse.carrental.entity.CarEntity;
-import lk.ijse.carrental.entity.CategoryEntity;
-import lk.ijse.carrental.entity.CustomerEntity;
+import lk.ijse.carrental.entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -24,6 +21,7 @@ public class SessionFactoryConfiguration {
                 .addAnnotatedClass(CategoryEntity.class)
                 .addAnnotatedClass(CarEntity.class)
                 .addAnnotatedClass(BookingEntity.class)
+                .addAnnotatedClass(ReturnEntity.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();

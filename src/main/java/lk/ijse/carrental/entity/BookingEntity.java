@@ -44,4 +44,19 @@ public class BookingEntity {
     @Column(nullable = false)
     private Double balance;
 
+    @OneToOne(mappedBy = "bookedEntity", targetEntity = ReturnEntity.class )
+    private ReturnEntity returnEntity;
+
+
+    public BookingEntity(String id, CustomerEntity customerEntity, CarEntity carEntity, LocalDate bookDate, LocalDate returnDate, Double rate, Double total, Double advance, Double balance) {
+        this.id = id;
+        this.customerEntity = customerEntity;
+        this.carEntity = carEntity;
+        this.bookDate = bookDate;
+        this.returnDate = returnDate;
+        this.rate = rate;
+        this.total = total;
+        this.advance = advance;
+        this.balance = balance;
+    }
 }

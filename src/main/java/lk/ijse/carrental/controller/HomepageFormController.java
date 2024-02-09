@@ -59,6 +59,16 @@ public class HomepageFormController {
         primaryStage.centerOnScreen();
         primaryStage.setTitle("Booking Form");
     }
+    @FXML
+    void btnReturnManageOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/returning_form.fxml"));
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
+        primaryStage.setTitle("Returning Form");
+    }
 
 
 }
