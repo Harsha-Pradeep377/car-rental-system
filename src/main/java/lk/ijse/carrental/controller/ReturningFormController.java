@@ -1,16 +1,21 @@
 package lk.ijse.carrental.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.carrental.dto.BookingDto;
 import lk.ijse.carrental.dto.ReturnDto;
+import lk.ijse.carrental.dto.tm.BookingTm;
+import lk.ijse.carrental.dto.tm.ReturnTm;
 import lk.ijse.carrental.entity.BookingEntity;
 import lk.ijse.carrental.service.custom.*;
 
@@ -18,6 +23,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 public class ReturningFormController {
 
@@ -49,7 +55,7 @@ public class ReturningFormController {
     private AnchorPane returnNode;
 
     @FXML
-    private TableView<?> tblReturn;
+    private TableView<ReturnTm> tblReturn;
 
     @FXML
     private TextField txtBalance;
@@ -88,6 +94,37 @@ public class ReturningFormController {
     private ReturnService returnService = ServiceFactory.getService(ServiceType.RETURN);
     private CarService carService = ServiceFactory.getService(ServiceType.CAR);
 
+    public void initialize(){
+        setCellValueFactory();
+        getAllReturnDetails();
+    }
+
+    private void setCellValueFactory() {
+        colReturnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colBookingId.setCellValueFactory(new PropertyValueFactory<>("bookedId"));
+        colReturnedDate.setCellValueFactory(new PropertyValueFactory<>("returnedDate"));
+        colOverDueDays.setCellValueFactory(new PropertyValueFactory<>("overdueDays"));
+        colOverDueAmount.setCellValueFactory(new PropertyValueFactory<>("overdueAmount"));
+        colDamadgeCost.setCellValueFactory(new PropertyValueFactory<>("damageCost"));
+        colFinalAmount.setCellValueFactory(new PropertyValueFactory<>("finalAmount"));
+    }
+
+    private void getAllReturnDetails() {
+        try {
+            ObservableList<ReturnTm> observableList = FXCollections.observableArrayList();
+            List<ReturnDto> returnDtos = returnService.getAll();
+
+            for (ReturnDto dto:returnDtos) {
+                var returnTm = new ReturnTm(dto.getId(), dto.getBookedId(), dto.getReturnedDate(), dto.getOverdueDays(),dto.getOverdueAmount(),dto.getDamageCost(), dto.getFinalAmount());
+                observableList.add(returnTm);
+            }
+            tblReturn.setItems(observableList);
+
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
     @FXML
     void btnSaveReturnOnAction(ActionEvent event) {
         String id = txtReturnId.getText();
@@ -101,11 +138,11 @@ public class ReturningFormController {
         var returnDto = new ReturnDto(id, bookId, returnedDate,dueDays, overDueAmount, damageCost, finalAmount);
         BookingDto bookingDto = bookingService.search(returnDto.getBookedId());
         try {
-            returnService.saveBooking(returnDto);
+            returnService.saveReturnDetails(returnDto);
             new Alert(Alert.AlertType.CONFIRMATION,"Return details Saved!").show();
             updateIsAvailability(bookingDto.getCarId(), true);
             clearFields();
-            //initialize();
+            initialize();
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
@@ -113,7 +150,18 @@ public class ReturningFormController {
     }
 
     private void clearFields() {
-
+        txtBookId.setText("");
+        txtBookDate.setText("");
+        txtReturnDate.setText("");
+        txtCustId.setText("");
+        txtCarId.setText("");
+        txtBalance.setText("");
+        txtReturnId.setText("");
+        dateReturned.setValue(null);
+        txtOverdueDays.setText("");
+        txtDueAmount.setText("");
+        txtDamageCost.setText("");
+        txtFinalAmount.setText("");
     }
 
     private void updateIsAvailability(String carId, boolean availability) {
@@ -159,12 +207,43 @@ public class ReturningFormController {
         return duration;
     }
 
-
     @FXML
     void tblSearchOnAction(MouseEvent event) {
-
+        try {
+            String id = tblReturn.getSelectionModel().getSelectedItem().getId();
+            ReturnDto returnDto = returnService.search(id);
+            if(returnDto != null) {
+                txtBookId.setText(returnDto.getBookedId());
+                txtReturnId.setText(returnDto.getId());
+                dateReturned.setValue(returnDto.getReturnedDate());
+                txtOverdueDays.setText(Integer.toString(returnDto.getOverdueDays()));
+                txtDueAmount.setText(Double.toString(returnDto.getOverdueAmount()));
+                txtDamageCost.setText(Double.toString(returnDto.getDamageCost()));
+                txtFinalAmount.setText(Double.toString(returnDto.getFinalAmount()));
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
+    @FXML
+    void btnDeleteReturnDetailsOnAction(ActionEvent event) {
+        String id = txtReturnId.getText();
+        try {
+            ReturnDto returnDto = returnService.search(id);
+            returnService.deleteReturnDetails(returnDto);
+            new Alert(Alert.AlertType.CONFIRMATION,"Return details deleted!").show();
+            clearFields();
+            initialize();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
+    }
+
+    @FXML
+    void btnClearFieldsOnAction(ActionEvent event) {
+        clearFields();
+    }
     @FXML
     void btnHomePageOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(this.getClass().getResource("/view/homepage_form.fxml"));

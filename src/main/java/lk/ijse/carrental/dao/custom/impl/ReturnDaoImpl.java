@@ -21,12 +21,33 @@ public class ReturnDaoImpl implements ReturnDao {
 
     @Override
     public List<ReturnEntity> getAll() {
-        return null;
+        Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "FROM ReturnEntity";
+        List<ReturnEntity> entities = session.createQuery(hql, ReturnEntity.class).list();
+        transaction.commit();
+        session.close();
+        return entities;
+
     }
 
     @Override
-    public ReturnEntity search(String s) {
-        return null;
+    public ReturnEntity search(String id) {
+        Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        ReturnEntity returnEntity = session.get(ReturnEntity.class,id);
+
+        transaction.commit();
+
+        return returnEntity;
+    }
+    @Override
+    public void delete(ReturnEntity entity) {
+        Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.remove(entity);
+
+        transaction.commit();
     }
 
     @Override
@@ -34,9 +55,6 @@ public class ReturnDaoImpl implements ReturnDao {
 
     }
 
-    @Override
-    public void delete(ReturnEntity entity) {
 
-    }
 
 }

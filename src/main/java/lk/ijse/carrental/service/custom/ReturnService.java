@@ -6,9 +6,10 @@ import lk.ijse.carrental.dto.ReturnDto;
 import java.util.List;
 
 public interface ReturnService {
-    void saveBooking(ReturnDto returnDto);
+    void saveReturnDetails(ReturnDto returnDto);
 
     ReturnDto search(String returnId);
 
     List<ReturnDto> getAll();
+    void deleteReturnDetails(ReturnDto dto);
 }

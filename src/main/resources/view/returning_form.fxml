@@ -42,5 +42,7 @@
       <Button fx:id="btnHomePage" layoutX="487.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" text="Home" />
       <TextField fx:id="txtDamageCost" layoutX="75.0" layoutY="304.0" promptText="Cost For Damages" />
       <Button layoutX="480.0" layoutY="304.0" mnemonicParsing="false" onAction="#btnFinalAmountOnAction" prefHeight="25.0" prefWidth="131.0" text="Calculate" />
+      <Button fx:id="btnDelete" layoutX="324.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnDeleteReturnDetailsOnAction" text="Delete" />
+      <Button fx:id="btnClear" layoutX="242.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnClearFieldsOnAction" text="Clear" />
    </children>
 </AnchorPane>
