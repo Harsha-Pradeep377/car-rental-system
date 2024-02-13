@@ -1,9 +1,6 @@
 package lk.ijse.carrental.dao;
 
-import lk.ijse.carrental.dao.custom.impl.BookingDaoImpl;
-import lk.ijse.carrental.dao.custom.impl.CarDaoImpl;
-import lk.ijse.carrental.dao.custom.impl.CategoryDaoImpl;
-import lk.ijse.carrental.dao.custom.impl.CustomerDaoImpl;
+import lk.ijse.carrental.dao.custom.impl.*;
 
 public class DaoFactory {
     public static <T> T getDao(DaoType type){
@@ -16,6 +13,8 @@ public class DaoFactory {
                 return (T) new CarDaoImpl();
             case BOOKING:
                 return (T) new BookingDaoImpl();
+            case RETURN:
+                return (T) new ReturnDaoImpl();
             default:
                 return null;
         }

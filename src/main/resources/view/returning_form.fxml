@@ -20,7 +20,7 @@
       <TextField fx:id="txtReturnDate" layoutX="75.0" layoutY="114.0" promptText="Returning Date" />
       <TextField fx:id="txtBookDate" layoutX="300.0" layoutY="69.0" promptText="Booked Date" />
       <TextField fx:id="txtCarId" layoutX="300.0" layoutY="114.0" promptText="Car Id" />
-      <DatePicker fx:id="dateReturned" layoutX="300.0" layoutY="203.0" promptText="Returned Date" />
+      <DatePicker fx:id="dateReturned" layoutX="300.0" layoutY="203.0" onAction="#calculateDuedaysOnAction" promptText="Returned Date" />
       <TextField fx:id="txtBalance" layoutX="300.0" layoutY="161.0" promptText="Balance" />
       <TextField fx:id="txtOverdueDays" layoutX="75.0" layoutY="252.0" prefHeight="31.0" prefWidth="149.0" promptText="Overdue Days" />
       <TextField fx:id="txtDueAmount" layoutX="300.0" layoutY="258.0" prefHeight="25.0" prefWidth="149.0" promptText="OverDue Amount" />
@@ -41,5 +41,6 @@
       <Button fx:id="btnSaveReurn" layoutX="408.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnSaveReturnOnAction" text="Save" />
       <Button fx:id="btnHomePage" layoutX="487.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" text="Home" />
       <TextField fx:id="txtDamageCost" layoutX="75.0" layoutY="304.0" promptText="Cost For Damages" />
+      <Button layoutX="480.0" layoutY="304.0" mnemonicParsing="false" onAction="#btnFinalAmountOnAction" prefHeight="25.0" prefWidth="131.0" text="Calculate" />
    </children>
 </AnchorPane>
