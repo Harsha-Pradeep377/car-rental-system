@@ -119,7 +119,16 @@ public class CarFormController {
             List<CarDto> carDtos = carService.getAll();
 
             for (CarDto dto:carDtos) {
-                var carTm = new CarTm(dto.getId(), dto.getBrand(), dto.getModel(), dto.getColour(), dto.getVehicleNo(), dto.getYear(), dto.getPrice(), dto.getCatId(),dto.getIsAvailability() ? "Available" : "Not Available");
+                var carTm = new CarTm(
+                        dto.getId(),
+                        dto.getBrand(),
+                        dto.getModel(),
+                        dto.getColour(),
+                        dto.getVehicleNo(),
+                        dto.getYear(),
+                        dto.getPrice(),
+                        dto.getCatId(),
+                        dto.getIsAvailability() ? "Available" : "Not Available");
                 observableList.add(carTm);
             }
             tblCar.setItems(observableList);

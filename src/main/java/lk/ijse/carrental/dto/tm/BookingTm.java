@@ -19,4 +19,5 @@ public class BookingTm {
     private Double total;
     private Double advance;
     private Double balance;
+    private String status;
 }

@@ -39,8 +39,6 @@ public class BookingFormController {
     @FXML
     private TextField txtAdvance;
     @FXML
-    private TextField txtAvailability;
-    @FXML
     private TextField txtBalance;
     @FXML
     private TextField txtBookId;
@@ -71,6 +69,8 @@ public class BookingFormController {
     @FXML
     private TableColumn<?, ?> colrate;
     @FXML
+    private TableColumn<?, ?> colStatus;
+    @FXML
     private TableView<BookingTm> tblBooking;
 
 
@@ -92,6 +92,7 @@ public class BookingFormController {
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
         colAdvance.setCellValueFactory(new PropertyValueFactory<>("advance"));
         colBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
     private void getAllbookings() {
@@ -100,7 +101,8 @@ public class BookingFormController {
             List<BookingDto> bookingDtos = bookingService.getAll();
 
             for (BookingDto dto:bookingDtos) {
-                var bookingTm = new BookingTm(dto.getId(), dto.getCustId(), dto.getCarId(), dto.getBookDate(),dto.getReturnDate(),dto.getRate(), dto.getTotal(), dto.getAdvance(), dto.getBalance());
+                CarDto carDto = carService.search(dto.getCarId());
+                var bookingTm = new BookingTm(dto.getId(), dto.getCustId(), dto.getCarId(), dto.getBookDate(),dto.getReturnDate(),dto.getRate(), dto.getTotal(), dto.getAdvance(), dto.getBalance(), carDto.getIsAvailability() ? "Returned" : "Booked");
                 observableList.add(bookingTm);
             }
             tblBooking.setItems(observableList);

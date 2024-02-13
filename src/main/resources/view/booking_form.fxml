@@ -30,7 +30,7 @@
          </font>
       </Label>
       <Button fx:id="btnClear" layoutX="654.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="71.0" text="Clear" />
-      <TableView fx:id="tblBooking" layoutX="83.0" layoutY="278.0" onMouseClicked="#tblSearchOnAction" prefHeight="136.0" prefWidth="677.0">
+      <TableView fx:id="tblBooking" layoutX="24.0" layoutY="276.0" onMouseClicked="#tblSearchOnAction" prefHeight="136.0" prefWidth="747.0">
         <columns>
           <TableColumn fx:id="colBookingId" prefWidth="75.0" text="Booking Id" />
           <TableColumn fx:id="colCustId" prefWidth="75.0" text="Cust Id" />
@@ -41,6 +41,7 @@
             <TableColumn fx:id="colTotal" prefWidth="75.0" text="Total" />
             <TableColumn fx:id="colAdvance" prefWidth="75.0" text="Advance" />
             <TableColumn fx:id="colBalance" prefWidth="75.0" text="Balance" />
+            <TableColumn fx:id="colStatus" prefWidth="75.0" text="Status" />
         </columns>
       </TableView>
    </children>
