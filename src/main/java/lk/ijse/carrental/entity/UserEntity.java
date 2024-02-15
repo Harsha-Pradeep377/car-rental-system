@@ -20,10 +20,10 @@ public class UserEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(name = "user_name",nullable = false)
     private String userName;
 
-    @Column(nullable = false)
+    @Column(name = "passward",nullable = false)
     private String pass;
 
     @Column
