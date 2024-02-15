@@ -15,6 +15,8 @@ public class DaoFactory {
                 return (T) new BookingDaoImpl();
             case RETURN:
                 return (T) new ReturnDaoImpl();
+            case USER:
+                return (T) new UserDaoImpl();
             default:
                 return null;
         }

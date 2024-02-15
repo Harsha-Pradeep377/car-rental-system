@@ -15,6 +15,8 @@ public class ServiceFactory {
                 return (T) new BookingServiceImpl();
             case RETURN:
                 return (T) new ReturnServiceImpl();
+            case USER:
+                return (T) new UserServiceImpl();
             default:
                 return null;
         }

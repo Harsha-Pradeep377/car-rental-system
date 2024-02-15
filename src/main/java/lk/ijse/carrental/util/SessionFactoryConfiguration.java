@@ -22,6 +22,7 @@ public class SessionFactoryConfiguration {
                 .addAnnotatedClass(CarEntity.class)
                 .addAnnotatedClass(BookingEntity.class)
                 .addAnnotatedClass(ReturnEntity.class)
+                .addAnnotatedClass(UserEntity.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();
