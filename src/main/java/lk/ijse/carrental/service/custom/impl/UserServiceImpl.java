@@ -45,4 +45,14 @@ public class UserServiceImpl implements UserService {
         var userEntity = new UserEntity(dto.getId(),dto.getName(),dto.getUserName(),dto.getPass(),dto.getEmail(), dto.getMobile());
         userDao.delete(userEntity);
     }
+
+    @Override
+    public UserDto getUser(String userName) {
+        UserEntity entity = userDao.getUser(userName);
+        if(entity != null){
+            return new UserDto(entity.getId(), entity.getName(), entity.getUserName(), entity.getPass(), entity.getEmail(),entity.getMobile());
+        }else {
+            return null;
+        }
+    }
 }

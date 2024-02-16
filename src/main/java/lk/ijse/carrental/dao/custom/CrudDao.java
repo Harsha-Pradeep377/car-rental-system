@@ -12,4 +12,5 @@ public interface CrudDao<T,Id> {
     void delete(T entity);
 
     List<T> getAll();
+
 }

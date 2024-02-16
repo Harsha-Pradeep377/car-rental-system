@@ -12,6 +12,7 @@ public interface UserService {
 
     void updateUser(UserDto userDto);
 
-
     void deleteUser(UserDto dto);
+
+    UserDto getUser(String userName);
 }

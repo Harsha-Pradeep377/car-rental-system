@@ -6,6 +6,7 @@ import lk.ijse.carrental.entity.UserEntity;
 import lk.ijse.carrental.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -50,5 +51,16 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<UserEntity> getAll() {
         return null;
+    }
+
+    @Override
+    public UserEntity getUser(String userName) {
+        Session session = SessionFactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = "FROM UserEntity WHERE userName = :userName";
+        Query<UserEntity> query = session.createQuery(hql, UserEntity.class);
+        query.setParameter("userName", userName);
+        transaction.commit();
+        return query.uniqueResult();
     }
 }
