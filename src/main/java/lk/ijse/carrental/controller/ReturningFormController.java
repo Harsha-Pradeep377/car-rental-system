@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.carrental.dto.BookingDto;
 import lk.ijse.carrental.dto.ReturnDto;
+import lk.ijse.carrental.dto.UserDto;
 import lk.ijse.carrental.dto.tm.BookingTm;
 import lk.ijse.carrental.dto.tm.ReturnTm;
 import lk.ijse.carrental.entity.BookingEntity;
@@ -24,6 +25,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
 public class ReturningFormController {
 
@@ -130,23 +132,31 @@ public class ReturningFormController {
         String id = txtReturnId.getText();
         String bookId = txtBookId.getText();
         LocalDate returnedDate = dateReturned.getValue();
-        Integer dueDays = Integer.parseInt(txtOverdueDays.getText());
-        Double overDueAmount = Double.parseDouble(txtDueAmount.getText());
-        Double damageCost = Double.parseDouble(txtDamageCost.getText());
-        Double finalAmount = Double.parseDouble((txtFinalAmount.getText()));
+        String textDuedays = txtOverdueDays.getText();
+        String textDueAmount = txtDueAmount.getText();
+        String textDamageCost = txtDamageCost.getText();
+        String textFinalAmount = txtFinalAmount.getText();
+        
+        if (!id.isEmpty() && !bookId.isEmpty() && returnedDate != null && !textDuedays.isEmpty() && !textDueAmount.isEmpty() && !textDamageCost.isEmpty() && !textFinalAmount.isEmpty()) {
+            Integer dueDays  = Integer.parseInt(textDuedays);
+            Double overDueAmount  = Double.parseDouble(textDueAmount);
+            Double damageCost = Double.parseDouble(textDamageCost);
+            Double finalAmount = Double.parseDouble(textFinalAmount);
 
-        var returnDto = new ReturnDto(id, bookId, returnedDate,dueDays, overDueAmount, damageCost, finalAmount);
-        BookingDto bookingDto = bookingService.search(returnDto.getBookedId());
-        try {
-            returnService.saveReturnDetails(returnDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"Return details Saved!").show();
-            updateIsAvailability(bookingDto.getCarId(), true);
-            clearFields();
-            initialize();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            var returnDto = new ReturnDto(id, bookId, returnedDate,dueDays, overDueAmount, damageCost, finalAmount);
+            BookingDto bookingDto = bookingService.search(returnDto.getBookedId());
+            try {
+                returnService.saveReturnDetails(returnDto);
+                new Alert(Alert.AlertType.CONFIRMATION,"Return details Saved!").show();
+                updateIsAvailability(bookingDto.getCarId(), true);
+                clearFields();
+                initialize();
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please fill the required details!").show();
         }
-
     }
 
     private void clearFields() {
@@ -170,20 +180,23 @@ public class ReturningFormController {
 
     @FXML
     void btnSearchBookingOnAction(ActionEvent event) {
-       try {
-            String id = txtBookId.getText();
-            BookingDto bookingDto = bookingService.search(id);
-            if(bookingDto != null){
-                txtCustId.setText(bookingDto.getCustId());
-                txtCarId.setText(bookingDto.getCarId());
-                txtBookDate.setText(String.valueOf(bookingDto.getBookDate()));
-                txtReturnDate.setText(String.valueOf(bookingDto.getReturnDate()));
-                txtBalance.setText(Double.toString(bookingDto.getBalance()));
+        String id = txtBookId.getText();
+        if (!id.isEmpty()) {
+            try {
+                BookingDto bookingDto = bookingService.search(id);
+                if(bookingDto != null){
+                    txtCustId.setText(bookingDto.getCustId());
+                    txtCarId.setText(bookingDto.getCarId());
+                    txtBookDate.setText(String.valueOf(bookingDto.getBookDate()));
+                    txtReturnDate.setText(String.valueOf(bookingDto.getReturnDate()));
+                    txtBalance.setText(Double.toString(bookingDto.getBalance()));
+                }
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.WARNING,"Booking id not found!").show();
             }
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please enter a booking id!").show();
         }
-
     }
 
     @FXML
@@ -229,14 +242,24 @@ public class ReturningFormController {
     @FXML
     void btnDeleteReturnDetailsOnAction(ActionEvent event) {
         String id = txtReturnId.getText();
-        try {
-            ReturnDto returnDto = returnService.search(id);
-            returnService.deleteReturnDetails(returnDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"Return details deleted!").show();
-            clearFields();
-            initialize();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        if(!id.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING,
+                    "Do you want to delete this return details?",
+                    ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> type = alert.showAndWait();
+            if(type.isPresent() && type.get() == ButtonType.YES){
+                try {
+                    ReturnDto returnDto = returnService.search(id);
+                    returnService.deleteReturnDetails(returnDto);
+                    new Alert(Alert.AlertType.CONFIRMATION,"Return details deleted!",ButtonType.OK).show();
+                    clearFields();
+                    initialize();
+                } catch (Exception e) {
+                    new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                }
+            }
+        }else {
+            new Alert(Alert.AlertType.WARNING,"Please select the required return id to delete!").show();
         }
     }
 

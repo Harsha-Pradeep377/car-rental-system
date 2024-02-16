@@ -28,6 +28,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.List;
+import java.util.Optional;
 
 public class BookingFormController {
     @FXML
@@ -117,23 +118,31 @@ public class BookingFormController {
         String carId = txtCarId.getText();
         LocalDate bookingDate = dateBooking.getValue();
         LocalDate returningDate = dateReturning.getValue();
-        Double rate = Double.parseDouble(txtRate.getText());
-        Double total = Double.parseDouble(txtTotal.getText());
-        Double advance  = Double.parseDouble(txtAdvance.getText());
-        Double balance = Double.parseDouble((txtBalance.getText()));
+        String textRate = txtRate.getText();
+        String textTotal = txtTotal.getText();
+        String textAdvance = txtAdvance.getText();
+        String textBalance = txtBalance.getText();
 
-        var bookingDto = new BookingDto(id,custId,carId,bookingDate,returningDate,rate,total,advance,balance);
+        if (!id.isEmpty() && !custId.isEmpty() && !carId.isEmpty() && bookingDate != null && returningDate != null && !textRate.isEmpty() && !textTotal.isEmpty() && !textAdvance.isEmpty() && !textBalance.isEmpty()) {
+            Double rate = Double.parseDouble(textRate);
+            Double advance  = Double.parseDouble(textAdvance);
+            Double total = Double.parseDouble(textTotal);
+            Double balance = Double.parseDouble(textBalance);
 
-        try {
-            bookingService.saveBooking(bookingDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"Booking details Saved!").show();
-            updateIsAvailability(bookingDto.getCarId(), false);
-            clearFields();
-            initialize();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            var bookingDto = new BookingDto(id,custId,carId,bookingDate,returningDate,rate,total,advance,balance);
+
+            try {
+                bookingService.saveBooking(bookingDto);
+                new Alert(Alert.AlertType.CONFIRMATION,"Booking details Saved!").show();
+                updateIsAvailability(bookingDto.getCarId(), false);
+                clearFields();
+                initialize();
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please fill the required details!").show();
         }
-
     }
 
     private void updateIsAvailability(String carId, boolean availability) {
@@ -146,34 +155,51 @@ public class BookingFormController {
         String carId = txtCarId.getText();
         LocalDate bookingDate = dateBooking.getValue();
         LocalDate returningDate = dateReturning.getValue();
-        Double rate = Double.parseDouble(txtRate.getText());
-        Double total = Double.parseDouble(txtTotal.getText());
-        Double advance  = Double.parseDouble(txtAdvance.getText());
-        Double balance = Double.parseDouble((txtBalance.getText()));
+        String textRate = txtRate.getText();
+        String textTotal = txtTotal.getText();
+        String textAdvance = txtAdvance.getText();
+        String textBalance = txtBalance.getText();
 
-        var bookingDto = new BookingDto(id,custId,carId,bookingDate,returningDate,rate,total,advance,balance);
+        if (!id.isEmpty() && !custId.isEmpty() && !carId.isEmpty() && bookingDate != null && returningDate != null && !textRate.isEmpty() && !textTotal.isEmpty() && !textAdvance.isEmpty() && !textBalance.isEmpty()) {
+            Double rate = Double.parseDouble(textRate);
+            Double advance  = Double.parseDouble(textAdvance);
+            Double total = Double.parseDouble(textTotal);
+            Double balance = Double.parseDouble(textBalance);
 
-        try {
-            bookingService.updateBooking(bookingDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"Booking details updated!").show();
-            clearFields();
-            initialize();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            var bookingDto = new BookingDto(id,custId,carId,bookingDate,returningDate,rate,total,advance,balance);
+
+            try {
+                bookingService.updateBooking(bookingDto);
+                new Alert(Alert.AlertType.CONFIRMATION,"Booking details updated!").show();
+                clearFields();
+                initialize();
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please fill the required details!").show();
         }
-
     }
-
     public void btnDeleteOnAction(ActionEvent actionEvent) {
         String id = txtBookId.getText();
-        try {
-            BookingDto bookingDto = bookingService.search(id);
-            bookingService.deleteBooking(bookingDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"Booking details deleted!").show();
-            clearFields();
-            initialize();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        if(!id.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING,
+                    "Do you want to delete this Booking?",
+                    ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> type = alert.showAndWait();
+            if(type.isPresent() && type.get() == ButtonType.YES) {
+                try {
+                    BookingDto bookingDto = bookingService.search(id);
+                    bookingService.deleteBooking(bookingDto);
+                    new Alert(Alert.AlertType.CONFIRMATION, "Booking details deleted!",ButtonType.OK).show();
+                    clearFields();
+                    initialize();
+                } catch (Exception e) {
+                    new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+                }
+            }
+        }else {
+            new Alert(Alert.AlertType.WARNING,"Please select the required booking id to delete!").show();
         }
     }
 
@@ -221,17 +247,27 @@ public class BookingFormController {
         LocalDate returnDate = dateReturning.getValue();
         Integer duration = duration(bookDate,returnDate);
 
-        if(duration>30){
-            new Alert(Alert.AlertType.WARNING,"The duration should be less than 30 days").show();
-        }else{
-            Double total = (duration*(Double.parseDouble(txtRate.getText())));
-            txtTotal.setText(Double.toString(total));
+        String textRate = txtRate.getText();
+        if(textRate.matches("^-?\\d*\\.?\\d+$")) {
+            if (duration > 30) {
+                new Alert(Alert.AlertType.WARNING, "The duration should be less than 30 days").show();
+            } else {
+                Double total = (duration * (Double.parseDouble(txtRate.getText())));
+                txtTotal.setText(Double.toString(total));
+            }
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Please insert a valid rate!").show();
         }
     }
     @FXML
     void calculateBalanceOnAction(ActionEvent event) {
-        Double balance = (Double.parseDouble(txtTotal.getText())) - (Double.parseDouble(txtAdvance.getText()));
-        txtBalance.setText(Double.toString(balance));
+        String textAdvance = txtAdvance.getText();
+        if(textAdvance.matches("^-?\\d*\\.?\\d+$")) {
+            Double balance = (Double.parseDouble(txtTotal.getText())) - (Double.parseDouble(txtAdvance.getText()));
+            txtBalance.setText(Double.toString(balance));
+        }else{
+            new Alert(Alert.AlertType.WARNING, "Please insert a valid advance!").show();
+        }
     }
 
 

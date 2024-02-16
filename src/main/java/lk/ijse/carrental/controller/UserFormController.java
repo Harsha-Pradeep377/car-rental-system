@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -19,6 +20,7 @@ import lk.ijse.carrental.service.custom.UserService;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
 
 public class UserFormController {
     @FXML
@@ -54,14 +56,26 @@ public class UserFormController {
         String email = txtEmail.getText();
         String mobile = txtMobile.getText();
 
-        var userDto = new UserDto(id,name,userName,hashPassward,email,mobile);
+        if(!id.isEmpty() && !name.isEmpty() && !userName.isEmpty() && !pass.isEmpty() && !email.isEmpty() && !mobile.isEmpty() ){
+            if(email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")){
+                if(mobile.matches("^\\d{10}$")){
+                    var userDto = new UserDto(id,name,userName,hashPassward,email,mobile);
 
-        try {
-            userService.saveUser(userDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"User Saved!").show();
-            clearFields();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                    try {
+                        userService.saveUser(userDto);
+                        new Alert(Alert.AlertType.CONFIRMATION,"User Saved!").show();
+                        clearFields();
+                    } catch (Exception e) {
+                        new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                    }
+                }else{
+                    new Alert(Alert.AlertType.WARNING,"Please insert a valid mobile number!").show();
+                }
+            }else{
+                new Alert(Alert.AlertType.WARNING,"Please insert a valid email!").show();
+            }
+        }else{
+            new Alert(Alert.AlertType.WARNING,"Please fill the required details!").show();
         }
 
     }
@@ -93,30 +107,43 @@ public class UserFormController {
     @FXML
     void txtSearchUserOnAction(ActionEvent event) {
         String id = txtUserId.getText();
-        try {
-            UserDto userDto = userService.search(id);
-            if(userDto != null) {
-                txtName.setText(userDto.getName());
-                txtUserName.setText(userDto.getUserName());
-                txtPassward.setText(userDto.getPass());
-                txtEmail.setText(userDto.getEmail());
-                txtMobile.setText(userDto.getMobile());
+        if (!id.isEmpty()) {
+            try {
+                UserDto userDto = userService.search(id);
+                if (userDto != null) {
+                    txtName.setText(userDto.getName());
+                    txtUserName.setText(userDto.getUserName());
+                    txtPassward.setText(userDto.getPass());
+                    txtEmail.setText(userDto.getEmail());
+                    txtMobile.setText(userDto.getMobile());
+                }
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.WARNING,"User not found!").show();
             }
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please enter a user ID!").show();
         }
-
     }
     @FXML
     void btnDeleteUserOnAction(ActionEvent event) {
         String id = txtUserId.getText();
-        try {
-            UserDto dto = userService.search(id);
-            userService.deleteUser(dto);
-            new Alert(Alert.AlertType.CONFIRMATION,"User Deleted!").show();
-            clearFields();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        if(!id.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING,
+                    "Do you want to delete this user?",
+                    ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> type = alert.showAndWait();
+            if(type.isPresent() && type.get() == ButtonType.YES){
+                try {
+                    UserDto dto = userService.search(id);
+                    userService.deleteUser(dto);
+                    new Alert(Alert.AlertType.CONFIRMATION,"User Deleted!",ButtonType.OK).show();
+                    clearFields();
+                } catch (Exception e) {
+                    new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                }
+            }
+        }else {
+            new Alert(Alert.AlertType.WARNING,"Please select the required user id to delete!").show();
         }
     }
 
@@ -130,16 +157,32 @@ public class UserFormController {
         String email = txtEmail.getText();
         String mobile = txtMobile.getText();
 
-        var userDto = new UserDto(id,name,userName,hashPassward,email,mobile);
+        if(!id.isEmpty() && !name.isEmpty() && !userName.isEmpty() && !pass.isEmpty() && !email.isEmpty() && !mobile.isEmpty() ){
+            if(email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")){
+                if(mobile.matches("^\\d{10}$")){
+                    var userDto = new UserDto(id,name,userName,hashPassward,email,mobile);
 
-        try {
-            userService.updateUser(userDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"User Updated!").show();
-            clearFields();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                    try {
+                        userService.updateUser(userDto);
+                        new Alert(Alert.AlertType.CONFIRMATION,"User Updated!").show();
+                        clearFields();
+                    } catch (Exception e) {
+                        new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                    }
+                }else{
+                    new Alert(Alert.AlertType.WARNING,"Please insert a valid mobile number!").show();
+                }
+            }else{
+                new Alert(Alert.AlertType.WARNING,"Please insert a valid email!").show();
+            }
+        }else{
+            new Alert(Alert.AlertType.WARNING,"Please fill the required details!").show();
         }
+    }
 
+    @FXML
+    void btnClearFieldsOnAction(ActionEvent event) {
+        clearFields();
     }
 
     @FXML

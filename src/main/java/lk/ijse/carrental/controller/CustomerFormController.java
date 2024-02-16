@@ -6,12 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -23,6 +20,7 @@ import lk.ijse.carrental.service.custom.ServiceType;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 
 public class CustomerFormController {
@@ -116,16 +114,29 @@ public class CustomerFormController {
         String address = txtAddress.getText();
         String contact = txtContact.getText();
 
-        var custDto = new CustomerDto(id,name,nic,address,contact);
+        if(!id.isEmpty() && !name.isEmpty() && !nic.isEmpty() && !address.isEmpty() && !contact.isEmpty()){
+            if(nic.matches("^\\d{9}[vVxX]$")){
+                if(contact.matches("^\\d{10}$")){
+                    var custDto = new CustomerDto(id,name,nic,address,contact);
 
-        try {
-            customerService.saveCustomer(custDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"Customer Saved!").show();
-            clearFields();
-            initialize();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                    try {
+                        customerService.saveCustomer(custDto);
+                        new Alert(Alert.AlertType.CONFIRMATION,"Customer Saved!").show();
+                        clearFields();
+                        initialize();
+                    } catch (Exception e) {
+                        new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                    }
+                }else{
+                    new Alert(Alert.AlertType.WARNING,"Please insert a valid contact number!").show();
+                }
+            }else{
+                new Alert(Alert.AlertType.WARNING,"Please insert a valid NIC!").show();
+            }
+        }else{
+            new Alert(Alert.AlertType.WARNING,"Please fill the required details!").show();
         }
+
 
 
     }
@@ -161,29 +172,52 @@ public class CustomerFormController {
         String address = txtAddress.getText();
         String contact = txtContact.getText();
 
-        var custDto = new CustomerDto(id,name,nic,address,contact);
-        try {
-            customerService.updateCustomer(custDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"Customer Updated!").show();
-            clearFields();
-            initialize();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        if(!id.isEmpty() && !name.isEmpty() && !nic.isEmpty() && !address.isEmpty() && !contact.isEmpty()){
+            if(nic.matches("^\\d{9}[vVxX]$")){
+                if(contact.matches("^\\d{10}$")){
+                    var custDto = new CustomerDto(id,name,nic,address,contact);
+                    try {
+                        customerService.updateCustomer(custDto);
+                        new Alert(Alert.AlertType.CONFIRMATION,"Customer Updated!").show();
+                        clearFields();
+                        initialize();
+                    } catch (Exception e) {
+                        new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                    }
+                }else{
+                    new Alert(Alert.AlertType.WARNING,"Please insert a valid contact number!").show();
+                }
+            }else{
+                new Alert(Alert.AlertType.WARNING,"Please insert a valid NIC!").show();
+            }
+        }else{
+            new Alert(Alert.AlertType.WARNING,"Please fill the required details!").show();
         }
 
     }
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
         String id = txtId.getText();
-        try {
-            CustomerDto dto = customerService.search(id);
-            customerService.deleteCustomer(dto);
-            new Alert(Alert.AlertType.CONFIRMATION,"Customer Deleted!").show();
-            clearFields();
-            initialize();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        if(!id.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING,
+                    "Do you want to delete this customer?",
+                    ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> type = alert.showAndWait();
+            if(type.isPresent() && type.get() == ButtonType.YES){
+                try {
+                    CustomerDto dto = customerService.search(id);
+                    customerService.deleteCustomer(dto);
+                    new Alert(Alert.AlertType.CONFIRMATION,"Customer Deleted!",ButtonType.OK).show();
+                    clearFields();
+                    initialize();
+                } catch (Exception e) {
+                    new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                }
+            }
+        }else {
+            new Alert(Alert.AlertType.WARNING,"Please select the required customer id to delete!").show();
         }
+
     }
 
     @FXML

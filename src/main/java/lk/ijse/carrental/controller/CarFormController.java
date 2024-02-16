@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.carrental.dto.CarDto;
 import lk.ijse.carrental.dto.CategoryDto;
+import lk.ijse.carrental.dto.CustomerDto;
 import lk.ijse.carrental.dto.tm.CarTm;
 import lk.ijse.carrental.service.custom.CarService;
 import lk.ijse.carrental.service.custom.CategoryService;
@@ -22,6 +23,7 @@ import lk.ijse.carrental.service.custom.ServiceType;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class CarFormController {
 
@@ -159,24 +161,43 @@ public class CarFormController {
         String model = txtModel.getText();
         String colour = txtColour.getText();
         String vehicleNo = txtVehicleNo.getText();
-        Integer year = Integer.parseInt(txtYear.getText());
-        Double price = Double.parseDouble(txtPrice.getText());
+        String yearText = txtYear.getText();
+        String priceText = txtPrice.getText();
         String catId  = txtCategory.getText();
 
+        if (!id.isEmpty() && !brand.isEmpty() && !model.isEmpty() && !colour.isEmpty() && !vehicleNo.isEmpty() && !yearText.isEmpty() && !priceText.isEmpty() && !catId.isEmpty()) {
+            try {
+                Integer year = Integer.parseInt(yearText);
+                try {
+                    Double price = Double.parseDouble(priceText);
+                    if (yearText.matches("^(19|20)\\d{2}$")) {
+                        if (priceText.matches("^-?\\d*\\.?\\d+$")) {
+                            var cartDto = new CarDto(id, brand, model, colour, vehicleNo, year, price, catId);
+                            cartDto.setIsAvailability(true);
 
-
-        var cartDto = new CarDto(id,brand,model,colour,vehicleNo,year,price,catId);
-        cartDto.setIsAvailability(true);
-
-        try {
-            carService.saveCar(cartDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"Car details Saved!").show();
-            clearFields();
-            initialize();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                            try {
+                                carService.saveCar(cartDto);
+                                new Alert(Alert.AlertType.CONFIRMATION, "Car details Saved!").show();
+                                clearFields();
+                                initialize();
+                            } catch (Exception e) {
+                                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+                            }
+                        } else {
+                            new Alert(Alert.AlertType.WARNING, "Please insert a valid price!").show();
+                        }
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Please insert a valid year!").show();
+                    }
+                } catch (NumberFormatException ex) {
+                    new Alert(Alert.AlertType.WARNING, "Please insert a valid price!").show();
+                }
+            } catch (NumberFormatException ex) {
+                new Alert(Alert.AlertType.WARNING, "Please insert a valid year!").show();
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please fill the required details!").show();
         }
-
     }
 
     @FXML
@@ -229,14 +250,24 @@ public class CarFormController {
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
         String id = txtId.getText();
-        try {
-            CarDto carDto = carService.search(id);
-            carService.deleteCar(carDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"Car Deleted!").show();
-            clearFields();
-            initialize();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        if(!id.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING,
+                    "Do you want to delete this car?",
+                    ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> type = alert.showAndWait();
+            if(type.isPresent() && type.get() == ButtonType.YES) {
+                try {
+                    CarDto carDto = carService.search(id);
+                    carService.deleteCar(carDto);
+                    new Alert(Alert.AlertType.CONFIRMATION, "Car Deleted!", ButtonType.OK).show();
+                    clearFields();
+                    initialize();
+                } catch (Exception e) {
+                    new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+                }
+            }
+        }else {
+            new Alert(Alert.AlertType.WARNING,"Please select the required car id to delete!").show();
         }
     }
 
@@ -247,22 +278,42 @@ public class CarFormController {
         String model = txtModel.getText();
         String colour = txtColour.getText();
         String vehicleNo = txtVehicleNo.getText();
-        Integer year = Integer.parseInt(txtYear.getText());
-        Double price = Double.parseDouble(txtPrice.getText());
+        String yearText = txtYear.getText();
+        String priceText = txtPrice.getText();
         String catId  = txtCategory.getText();
 
+        if (!id.isEmpty() && !brand.isEmpty() && !model.isEmpty() && !colour.isEmpty() && !vehicleNo.isEmpty() && !yearText.isEmpty() && !priceText.isEmpty() && !catId.isEmpty()) {
+            try {
+                Integer year = Integer.parseInt(yearText);
+                try {
+                    Double price = Double.parseDouble(priceText);
+                    if (yearText.matches("^(19|20)\\d{2}$")) {
+                        if (priceText.matches("^-?\\d*\\.?\\d+$")) {
+                            var cartDto = new CarDto(id,brand,model,colour,vehicleNo,year,price,catId);
 
-        var cartDto = new CarDto(id,brand,model,colour,vehicleNo,year,price,catId);
-
-        try {
-            carService.updateCar(cartDto);
-            new Alert(Alert.AlertType.CONFIRMATION,"Car details Updated!").show();
-            clearFields();
-            initialize();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                            try {
+                                carService.updateCar(cartDto);
+                                new Alert(Alert.AlertType.CONFIRMATION,"Car details Updated!").show();
+                                clearFields();
+                                initialize();
+                            } catch (Exception e) {
+                                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                            }
+                        } else {
+                            new Alert(Alert.AlertType.WARNING, "Please insert a valid price!").show();
+                        }
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Please insert a valid year!").show();
+                    }
+                } catch (NumberFormatException ex) {
+                    new Alert(Alert.AlertType.WARNING, "Please insert a valid price!").show();
+                }
+            } catch (NumberFormatException ex) {
+                new Alert(Alert.AlertType.WARNING, "Please insert a valid year!").show();
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please fill the required details!").show();
         }
-
     }
 
     @FXML

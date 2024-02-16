@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="userNode" prefHeight="544.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.UserFormController">
    <children>
       <Label layoutX="99.0" layoutY="14.0" prefHeight="32.0" prefWidth="200.0" text="User Registration">
@@ -26,9 +25,10 @@
       <TextField fx:id="txtPassward" layoutX="73.0" layoutY="285.0" prefHeight="25.0" prefWidth="176.0" promptText="Passward" />
       <TextField fx:id="txtEmail" layoutX="73.0" layoutY="346.0" prefHeight="25.0" prefWidth="183.0" promptText="Email" />
       <TextField fx:id="txtMobile" layoutX="73.0" layoutY="419.0" prefHeight="25.0" prefWidth="183.0" promptText="Mobile" />
-      <Button fx:id="btnCreate" layoutX="347.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnCreateUserOnAction" prefHeight="25.0" prefWidth="70.0" text="Create" />
-      <Button fx:id="btnDelete" layoutX="256.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnDeleteUserOnAction" prefHeight="25.0" prefWidth="70.0" text="Delete" />
-      <Button fx:id="btnUpdate" layoutX="149.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnUpdateUserOnAction" prefHeight="25.0" prefWidth="70.0" text="Update" />
+      <Button fx:id="btnCreate" layoutX="388.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnCreateUserOnAction" prefHeight="25.0" prefWidth="70.0" text="Create" />
+      <Button fx:id="btnDelete" layoutX="299.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnDeleteUserOnAction" prefHeight="25.0" prefWidth="70.0" text="Delete" />
+      <Button fx:id="btnUpdate" layoutX="206.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnUpdateUserOnAction" prefHeight="25.0" prefWidth="70.0" text="Update" />
       <Button layoutX="38.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnLoginFormOnAction" prefHeight="25.0" prefWidth="70.0" text="Back" />
+      <Button layoutX="129.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnClearFieldsOnAction" text="Clear" />
    </children>
 </AnchorPane>
