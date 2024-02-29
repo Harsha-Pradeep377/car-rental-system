@@ -9,15 +9,31 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="carNode" prefHeight="457.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.CarFormController">
+<AnchorPane fx:id="carNode" prefHeight="496.0" prefWidth="776.0" stylesheets="@../cssStyle/car.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.CarFormController">
    <children>
-      <Button fx:id="btnClear" layoutX="80.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnClearOnAction" text="Clear" />
-      <Button fx:id="btnDelete" layoutX="159.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="Delete" />
-      <Button fx:id="btnUpdate" layoutX="249.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update" />
-      <Button fx:id="btnSave" layoutX="354.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnSaveOnAction" text="Save" />
-      <Button fx:id="btnHome" layoutX="574.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" text="Home" />
-      <TableView fx:id="tblCar" layoutX="25.0" layoutY="288.0" onMouseClicked="#tblSearchCarOnAction" prefHeight="114.0" prefWidth="724.0">
+      <Button fx:id="btnClear" layoutX="216.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: #fff200;" text="Clear" textFill="#0a0000">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnDelete" layoutX="303.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: #fff200;" text="Delete" textFill="#0a0000">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnUpdate" layoutX="396.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: #fff200;" text="Update" textFill="#0a0000">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnSave" layoutX="487.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: #fff200;" text="Save" textFill="#0a0000">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnHome" layoutX="586.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: #fff200;" text="Home" textFill="#0a0000">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <TableView fx:id="tblCar" layoutX="25.0" layoutY="288.0" onMouseClicked="#tblSearchCarOnAction" prefHeight="121.0" prefWidth="724.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="75.0" text="Id" />
           <TableColumn fx:id="colBrand" prefWidth="60.0" text="Brand" />
@@ -31,23 +47,23 @@
 
         </columns>
       </TableView>
-      <TextField fx:id="txtId" alignment="CENTER" layoutX="88.0" layoutY="57.0" prefHeight="25.0" prefWidth="215.0" promptText="Car Id" />
-      <TextField fx:id="txtModel" alignment="CENTER" layoutX="88.0" layoutY="111.0" prefHeight="25.0" prefWidth="215.0" promptText="Model" />
-      <TextField fx:id="txtBrand" alignment="CENTER" layoutX="375.0" layoutY="57.0" prefHeight="25.0" prefWidth="197.0" promptText="Brand" />
-      <TextField fx:id="txtColour" alignment="CENTER" layoutX="375.0" layoutY="111.0" prefHeight="25.0" prefWidth="197.0" promptText="Colour" />
-      <TextField fx:id="txtYear" alignment="CENTER" layoutX="375.0" layoutY="167.0" prefHeight="25.0" prefWidth="197.0" promptText="Year" />
-      <TextField fx:id="txtPrice" alignment="CENTER" layoutX="88.0" layoutY="216.0" prefHeight="25.0" prefWidth="215.0" promptText="Price per day" />
-      <TextField fx:id="txtVehicleNo" alignment="CENTER" layoutX="88.0" layoutY="167.0" prefHeight="25.0" prefWidth="215.0" promptText="Vehecle No" />
-      <ComboBox fx:id="cmbCategory" layoutX="572.0" layoutY="216.0" onAction="#cmbOnAction" prefHeight="25.0" prefWidth="91.0" promptText="Category">
+      <TextField fx:id="txtId" alignment="CENTER" layoutX="192.0" layoutY="57.0" prefHeight="25.0" prefWidth="179.0" promptText="Car Id" />
+      <TextField fx:id="txtModel" alignment="CENTER" layoutX="192.0" layoutY="111.0" prefHeight="25.0" prefWidth="179.0" promptText="Model" />
+      <TextField fx:id="txtBrand" alignment="CENTER" layoutX="457.0" layoutY="57.0" prefHeight="25.0" prefWidth="197.0" promptText="Brand" />
+      <TextField fx:id="txtColour" alignment="CENTER" layoutX="457.0" layoutY="111.0" prefHeight="25.0" prefWidth="197.0" promptText="Colour" />
+      <TextField fx:id="txtYear" alignment="CENTER" layoutX="457.0" layoutY="167.0" prefHeight="25.0" prefWidth="197.0" promptText="Year" />
+      <TextField fx:id="txtPrice" alignment="CENTER" layoutX="192.0" layoutY="216.0" prefHeight="25.0" prefWidth="179.0" promptText="Price per day" />
+      <TextField fx:id="txtVehicleNo" alignment="CENTER" layoutX="192.0" layoutY="167.0" prefHeight="25.0" prefWidth="179.0" promptText="Vehecle No" />
+      <ComboBox fx:id="cmbCategory" layoutX="665.0" layoutY="216.0" onAction="#cmbOnAction" prefHeight="25.0" prefWidth="91.0" promptText="Category">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ComboBox>
-      <Label contentDisplay="CENTER" layoutX="278.0" layoutY="14.0" prefHeight="35.0" prefWidth="132.0" text="Manage Car" textAlignment="CENTER">
+      <Label fx:id="lblCategory" layoutX="569.0" layoutY="216.0" prefHeight="25.0" prefWidth="85.0" />
+      <TextField fx:id="txtCategory" alignment="CENTER" layoutX="457.0" layoutY="216.0" prefHeight="25.0" prefWidth="98.0" promptText="Category" />
+      <Text fill="#fff200" layoutX="244.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manager Car" textAlignment="CENTER" wrappingWidth="285.291015625">
          <font>
-            <Font size="24.0" />
+            <Font name="Forte" size="33.0" />
          </font>
-      </Label>
-      <Label fx:id="lblCategory" layoutX="481.0" layoutY="216.0" prefHeight="25.0" prefWidth="85.0" />
-      <TextField fx:id="txtCategory" alignment="CENTER" layoutX="375.0" layoutY="216.0" prefHeight="25.0" prefWidth="98.0" promptText="Category" />
+      </Text>
    </children>
 </AnchorPane>

@@ -8,26 +8,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="returnNode" prefHeight="556.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.ReturningFormController">
+<AnchorPane fx:id="returnNode" prefHeight="585.0" prefWidth="745.0" stylesheets="@../cssStyle/returning.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.ReturningFormController">
    <children>
       <Label layoutX="167.0" layoutY="14.0" prefHeight="39.0" prefWidth="231.0" text="Manage Returning">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBookId" layoutX="75.0" layoutY="69.0" onAction="#btnSearchBookingOnAction" prefHeight="25.0" prefWidth="149.0" promptText="Booked Id" />
-      <TextField fx:id="txtReturnDate" layoutX="75.0" layoutY="114.0" promptText="Returning Date" />
-      <TextField fx:id="txtBookDate" layoutX="300.0" layoutY="69.0" promptText="Booked Date" />
-      <TextField fx:id="txtCarId" layoutX="300.0" layoutY="114.0" promptText="Car Id" />
-      <DatePicker fx:id="dateReturned" layoutX="300.0" layoutY="203.0" onAction="#calculateDuedaysOnAction" promptText="Returned Date" />
-      <TextField fx:id="txtBalance" layoutX="300.0" layoutY="161.0" promptText="Balance" />
-      <TextField fx:id="txtOverdueDays" layoutX="75.0" layoutY="252.0" prefHeight="31.0" prefWidth="149.0" promptText="Overdue Days" />
-      <TextField fx:id="txtDueAmount" layoutX="300.0" layoutY="258.0" prefHeight="25.0" prefWidth="149.0" promptText="OverDue Amount" />
-      <TextField fx:id="txtReturnId" layoutX="75.0" layoutY="200.0" prefHeight="31.0" prefWidth="149.0" promptText="Return Id" />
-      <TextField fx:id="txtCustId" layoutX="75.0" layoutY="161.0" prefHeight="25.0" prefWidth="149.0" promptText="Customer Id" />
-      <TextField fx:id="txtFinalAmount" layoutX="300.0" layoutY="301.0" prefHeight="31.0" prefWidth="149.0" promptText="Final Amount" />
-      <TableView fx:id="tblReturn" layoutX="19.0" layoutY="349.0" onMouseClicked="#tblSearchOnAction" prefHeight="137.0" prefWidth="662.0">
+      <TextField fx:id="txtBookId" layoutX="151.0" layoutY="69.0" onAction="#btnSearchBookingOnAction" prefHeight="25.0" prefWidth="149.0" promptText="Booked Id" />
+      <TextField fx:id="txtReturnDate" layoutX="151.0" layoutY="114.0" promptText="Returning Date" />
+      <TextField fx:id="txtBookDate" layoutX="400.0" layoutY="69.0" promptText="Booked Date" />
+      <TextField fx:id="txtCarId" layoutX="400.0" layoutY="114.0" promptText="Car Id" />
+      <DatePicker fx:id="dateReturned" layoutX="400.0" layoutY="203.0" onAction="#calculateDuedaysOnAction" promptText="Returned Date" />
+      <TextField fx:id="txtBalance" layoutX="400.0" layoutY="161.0" promptText="Balance" />
+      <TextField fx:id="txtOverdueDays" layoutX="150.0" layoutY="252.0" prefHeight="31.0" prefWidth="149.0" promptText="Overdue Days" />
+      <TextField fx:id="txtDueAmount" layoutX="400.0" layoutY="255.0" prefHeight="25.0" prefWidth="149.0" promptText="OverDue Amount" />
+      <TextField fx:id="txtReturnId" layoutX="150.0" layoutY="203.0" prefHeight="31.0" prefWidth="149.0" promptText="Return Id" />
+      <TextField fx:id="txtCustId" layoutX="151.0" layoutY="161.0" prefHeight="25.0" prefWidth="149.0" promptText="Customer Id" />
+      <TextField fx:id="txtFinalAmount" layoutX="400.0" layoutY="301.0" prefHeight="31.0" prefWidth="149.0" promptText="Final Amount" />
+      <TableView fx:id="tblReturn" layoutX="67.0" layoutY="375.0" onMouseClicked="#tblSearchOnAction" prefHeight="149.0" prefWidth="662.0">
         <columns>
           <TableColumn fx:id="colReturnId" prefWidth="67.0" text="Return Id" />
           <TableColumn fx:id="colBookingId" prefWidth="87.0" text="Booked Id" />
@@ -38,11 +39,28 @@
             <TableColumn fx:id="colFinalAmount" prefWidth="90.0" text="Final Amount" />
         </columns>
       </TableView>
-      <Button fx:id="btnSaveReurn" layoutX="408.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnSaveReturnOnAction" text="Save" />
-      <Button fx:id="btnHomePage" layoutX="487.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" text="Home" />
-      <TextField fx:id="txtDamageCost" layoutX="75.0" layoutY="304.0" promptText="Cost For Damages" />
-      <Button layoutX="480.0" layoutY="304.0" mnemonicParsing="false" onAction="#btnFinalAmountOnAction" prefHeight="25.0" prefWidth="131.0" text="Calculate" />
-      <Button fx:id="btnDelete" layoutX="324.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnDeleteReturnDetailsOnAction" text="Delete" />
-      <Button fx:id="btnClear" layoutX="242.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnClearFieldsOnAction" text="Clear" />
+      <Button fx:id="btnSaveReurn" layoutX="412.0" layoutY="539.0" mnemonicParsing="false" onAction="#btnSaveReturnOnAction" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #ff9f1a;" text="Save" textFill="#0a0101">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnHomePage" layoutX="525.0" layoutY="539.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #ff9f1a;" text="Home" textFill="#0a0101">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <TextField fx:id="txtDamageCost" layoutX="151.0" layoutY="304.0" promptText="Cost For Damages" />
+      <Button layoutX="561.0" layoutY="304.0" mnemonicParsing="false" onAction="#btnFinalAmountOnAction" prefHeight="25.0" prefWidth="131.0" text="Calculate" />
+      <Button fx:id="btnDelete" layoutX="306.0" layoutY="539.0" mnemonicParsing="false" onAction="#btnDeleteReturnDetailsOnAction" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #ff9f1a;" text="Delete" textFill="#0a0101">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnClear" layoutX="201.0" layoutY="539.0" mnemonicParsing="false" onAction="#btnClearFieldsOnAction" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #ff9f1a;" text="Clear" textFill="#0a0101">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Text fill="#ff9f1a" layoutX="238.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Returnings" textAlignment="CENTER" wrappingWidth="285.291015625">
+         <font>
+            <Font name="Forte" size="33.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

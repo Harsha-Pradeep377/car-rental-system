@@ -224,7 +224,6 @@ public class CarFormController {
         txtVehicleNo.setText("");
         txtYear.setText("");
         txtPrice.setText("");
-        txtCategory.setText("");
     }
 
     @FXML

@@ -2,34 +2,44 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="bookingNode" prefHeight="497.0" prefWidth="810.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.BookingFormController">
+<AnchorPane fx:id="bookingNode" prefHeight="497.0" prefWidth="810.0" stylesheets="@../cssStyle/booking.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.BookingFormController">
    <children>
-      <Button fx:id="btnHome" layoutX="555.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" prefHeight="25.0" prefWidth="81.0" text="Home" />
-      <TextField fx:id="txtBookId" layoutX="104.0" layoutY="60.0" promptText="Booking Id" />
-      <TextField fx:id="txtCustId" layoutX="562.0" layoutY="60.0" promptText="Customer Id" />
-      <TextField fx:id="txtCarId" layoutX="353.0" layoutY="60.0" promptText="Car Id" />
-      <TextField fx:id="txtRate" layoutX="562.0" layoutY="117.0" onAction="#CheckDurationAndCalculateTotalOnAction" promptText="Rate Per Day" />
-      <TextField fx:id="txtAdvance" layoutX="347.0" layoutY="170.0" onAction="#calculateBalanceOnAction" promptText="Advance" />
-      <TextField fx:id="txtTotal" layoutX="98.0" layoutY="157.0" promptText="Total" />
-      <TextField fx:id="txtBalance" layoutX="555.0" layoutY="170.0" promptText="Balance" />
-      <Button fx:id="btnSave" layoutX="487.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="55.0" text="Save" />
-      <Button fx:id="btnUpdate" layoutX="387.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="81.0" text="Update" />
-      <Button fx:id="btnDelete" layoutX="299.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="63.0" text="Delete" />
-      <DatePicker fx:id="dateBooking" layoutX="104.0" layoutY="111.0" promptText="Booking Date" />
-      <DatePicker fx:id="dateReturning" layoutX="344.0" layoutY="111.0" promptText="Returning Date" />
-      <Label layoutX="266.0" layoutY="6.0" prefHeight="38.0" prefWidth="192.0" text="Manage Booking">
+      <Button fx:id="btnHome" layoutX="625.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #f368e0;" text="Home" textFill="#1e0505">
          <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnClear" layoutX="654.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="71.0" text="Clear" />
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <TextField fx:id="txtBookId" layoutX="137.0" layoutY="99.0" prefHeight="25.0" prefWidth="162.0" promptText="Booking Id" />
+      <TextField fx:id="txtCustId" layoutX="562.0" layoutY="99.0" prefHeight="25.0" prefWidth="162.0" promptText="Customer Id" />
+      <TextField fx:id="txtCarId" layoutX="353.0" layoutY="99.0" prefHeight="25.0" prefWidth="162.0" promptText="Car Id" />
+      <TextField fx:id="txtRate" layoutX="561.0" layoutY="158.0" onAction="#CheckDurationAndCalculateTotalOnAction" prefHeight="25.0" prefWidth="162.0" promptText="Rate Per Day" />
+      <TextField fx:id="txtAdvance" layoutX="353.0" layoutY="213.0" onAction="#calculateBalanceOnAction" prefHeight="25.0" prefWidth="162.0" promptText="Advance" />
+      <TextField fx:id="txtTotal" layoutX="137.0" layoutY="213.0" prefHeight="25.0" prefWidth="162.0" promptText="Total" />
+      <TextField fx:id="txtBalance" layoutX="562.0" layoutY="213.0" prefHeight="25.0" prefWidth="162.0" promptText="Balance" />
+      <Button fx:id="btnSave" layoutX="511.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #f368e0;" text="Save" textFill="#1e0505">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnUpdate" layoutX="394.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #f368e0;" text="Update" textFill="#1e0505">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnDelete" layoutX="281.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #f368e0;" text="Delete" textFill="#1e0505">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <DatePicker fx:id="dateBooking" layoutX="138.0" layoutY="158.0" promptText="Booking Date" />
+      <DatePicker fx:id="dateReturning" layoutX="353.0" layoutY="158.0" promptText="Returning Date" />
+      <Button fx:id="btnClear" layoutX="167.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #f368e0;" text="Clear" textFill="#1e0505">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
       <TableView fx:id="tblBooking" layoutX="24.0" layoutY="276.0" onMouseClicked="#tblSearchOnAction" prefHeight="136.0" prefWidth="747.0">
         <columns>
           <TableColumn fx:id="colBookingId" prefWidth="75.0" text="Booking Id" />
@@ -44,5 +54,10 @@
             <TableColumn fx:id="colStatus" prefWidth="75.0" text="Status" />
         </columns>
       </TableView>
+      <Text fill="#f368e0" layoutX="244.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Bookings" textAlignment="CENTER" wrappingWidth="285.291015625">
+         <font>
+            <Font name="Forte" size="33.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

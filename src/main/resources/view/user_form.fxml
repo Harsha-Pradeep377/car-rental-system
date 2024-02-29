@@ -3,32 +3,73 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="userNode" prefHeight="544.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.UserFormController">
+<AnchorPane fx:id="userNode" prefHeight="544.0" prefWidth="481.0" stylesheets="@../cssStyle/user.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.UserFormController">
    <children>
-      <Label layoutX="99.0" layoutY="14.0" prefHeight="32.0" prefWidth="200.0" text="User Registration">
+      <Label layoutX="74.0" layoutY="60.0" prefHeight="25.0" prefWidth="81.0" text="User Id" textFill="#f3ff00">
          <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Label layoutX="74.0" layoutY="60.0" prefHeight="25.0" prefWidth="81.0" text="User Id" />
-      <Label layoutX="74.0" layoutY="125.0" prefHeight="25.0" prefWidth="102.0" text="Name" />
-      <Label layoutX="74.0" layoutY="189.0" prefHeight="32.0" prefWidth="110.0" text="User Name" />
-      <Label layoutX="74.0" layoutY="260.0" prefHeight="25.0" prefWidth="110.0" text="Passward" />
-      <Label layoutX="74.0" layoutY="328.0" prefHeight="18.0" prefWidth="110.0" text="Email" />
-      <Label layoutX="74.0" layoutY="394.0" prefHeight="25.0" prefWidth="110.0" text="Mobile" />
-      <TextField fx:id="txtUserId" layoutX="73.0" layoutY="82.0" onAction="#txtSearchUserOnAction" prefHeight="25.0" prefWidth="176.0" promptText="User Id" />
-      <TextField fx:id="txtName" layoutX="74.0" layoutY="145.0" prefHeight="25.0" prefWidth="176.0" promptText="Name" />
-      <TextField fx:id="txtUserName" layoutX="74.0" layoutY="214.0" prefHeight="25.0" prefWidth="176.0" promptText="User Name" />
-      <TextField fx:id="txtPassward" layoutX="73.0" layoutY="285.0" prefHeight="25.0" prefWidth="176.0" promptText="Passward" />
+            <Font name="Arial Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="74.0" layoutY="125.0" prefHeight="25.0" prefWidth="102.0" text="Name" textFill="#f3ff00">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="74.0" layoutY="189.0" prefHeight="32.0" prefWidth="110.0" text="User Name" textFill="#f3ff00">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="74.0" layoutY="260.0" prefHeight="25.0" prefWidth="110.0" text="Passward" textFill="#f3ff00">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="74.0" layoutY="328.0" prefHeight="18.0" prefWidth="110.0" text="Email" textFill="#f3ff00">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="74.0" layoutY="394.0" prefHeight="25.0" prefWidth="110.0" text="Mobile" textFill="#f3ff00">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Label>
+      <TextField fx:id="txtUserId" layoutX="73.0" layoutY="82.0" onAction="#txtSearchUserOnAction" prefHeight="25.0" prefWidth="183.0" promptText="User Id" />
+      <TextField fx:id="txtName" layoutX="74.0" layoutY="145.0" prefHeight="25.0" prefWidth="183.0" promptText="Name" />
+      <TextField fx:id="txtUserName" layoutX="74.0" layoutY="214.0" prefHeight="25.0" prefWidth="183.0" promptText="User Name" />
+      <TextField fx:id="txtPassward" layoutX="73.0" layoutY="285.0" prefHeight="25.0" prefWidth="183.0" promptText="Passward" />
       <TextField fx:id="txtEmail" layoutX="73.0" layoutY="346.0" prefHeight="25.0" prefWidth="183.0" promptText="Email" />
       <TextField fx:id="txtMobile" layoutX="73.0" layoutY="419.0" prefHeight="25.0" prefWidth="183.0" promptText="Mobile" />
-      <Button fx:id="btnCreate" layoutX="388.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnCreateUserOnAction" prefHeight="25.0" prefWidth="70.0" text="Create" />
-      <Button fx:id="btnDelete" layoutX="299.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnDeleteUserOnAction" prefHeight="25.0" prefWidth="70.0" text="Delete" />
-      <Button fx:id="btnUpdate" layoutX="206.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnUpdateUserOnAction" prefHeight="25.0" prefWidth="70.0" text="Update" />
-      <Button layoutX="38.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnLoginFormOnAction" prefHeight="25.0" prefWidth="70.0" text="Back" />
-      <Button layoutX="129.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnClearFieldsOnAction" text="Clear" />
+      <Button fx:id="btnCreate" layoutX="388.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnCreateUserOnAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFC312;" text="Create" textFill="#070707">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnDelete" layoutX="299.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnDeleteUserOnAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFC312;" text="Delete" textFill="#070707">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnUpdate" layoutX="206.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnUpdateUserOnAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFC312;" text="Update" textFill="#070707">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Button>
+      <Button layoutX="28.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnLoginFormOnAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFC312;" text="Back" textFill="#070707">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Button>
+      <Button layoutX="116.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnClearFieldsOnAction" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFC312;" text="Clear" textFill="#070707">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Button>
+      <Text fill="#f8f8f8" layoutX="115.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Registration" textAlignment="CENTER" wrappingWidth="252.0">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="129.0" fitWidth="129.0" layoutX="305.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/user_add.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
