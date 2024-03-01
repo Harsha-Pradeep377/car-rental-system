@@ -63,12 +63,12 @@
       </Label>
       <AnchorPane blendMode="MULTIPLY" layoutX="423.0" layoutY="88.0" prefHeight="324.0" prefWidth="281.0" style="-fx-background-color: #130f40;">
          <children>
-            <Button fx:id="btnCustomer" layoutX="58.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnCustomerManageOnAction" prefHeight="30.0" prefWidth="176.0" style="-fx-background-color: #0be881;" text="Manage Customer" textFill="#050017">
+            <Button fx:id="btnCustomer" layoutX="58.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnCustomerManageOnAction" prefHeight="30.0" prefWidth="176.0" style="-fx-background-color: #32ff7e;" text="Manage Customer" textFill="#050017">
                <font>
                   <Font name="Forte" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="btnCategory" layoutX="57.0" layoutY="84.0" mnemonicParsing="false" onAction="#btnCategoryManageOnAction" prefHeight="30.0" prefWidth="176.0" style="-fx-background-color: #00a8ff;" text="Manage Category" textFill="#050017">
+            <Button fx:id="btnCategory" layoutX="57.0" layoutY="84.0" mnemonicParsing="false" onAction="#btnCategoryManageOnAction" prefHeight="30.0" prefWidth="176.0" style="-fx-background-color: #18dcff;" text="Manage Category" textFill="#050017">
                <font>
                   <Font name="Forte" size="17.0" />
                </font>
@@ -99,7 +99,7 @@
                <stops>
                   <Stop>
                      <color>
-                        <Color red="0.7286711931228638" green="0.8157894611358643" blue="0.16240254044532776" />
+                        <Color red="0.0833333358168602" green="1.0" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">

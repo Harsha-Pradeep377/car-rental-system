@@ -10,25 +10,25 @@
 
 <AnchorPane fx:id="categoryNode" prefHeight="363.0" prefWidth="600.0" stylesheets="@../cssStyle/category.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrental.controller.CategoryFormController">
    <children>
-      <Button fx:id="btnSave" layoutX="388.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: #00a8ff;" text="Save" textFill="#0d0202">
+      <Button fx:id="btnSave" layoutX="388.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: #18dcff;" text="Save" textFill="#0d0202">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <Button fx:id="btnClear" layoutX="127.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: #00a8ff;" text="Clear" textFill="#0d0202">
+      <Button fx:id="btnClear" layoutX="127.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: #18dcff;" text="Clear" textFill="#0d0202">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <Button fx:id="btnUpdate" layoutX="297.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #00a8ff;" text="Update" textFill="#0d0202">
+      <Button fx:id="btnUpdate" layoutX="297.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #18dcff;" text="Update" textFill="#0d0202">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <Button fx:id="btnDelete" layoutX="209.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: #00a8ff;" text="Delete" textFill="#0d0202">
+      <Button fx:id="btnDelete" layoutX="209.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: #18dcff;" text="Delete" textFill="#0d0202">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <TextField fx:id="txtCatName" layoutX="341.0" layoutY="100.0" promptText="Category Name" />
-      <TextField fx:id="txtCatId" alignment="CENTER" layoutX="148.0" layoutY="100.0" promptText="Category Id" />
-      <Button fx:id="btnHome" layoutX="472.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: #00a8ff;" text="Home" textFill="#0d0202">
+      <TextField fx:id="txtCatName" layoutX="341.0" layoutY="100.0" style="-fx-border-color: #18dcff;" />
+      <TextField fx:id="txtCatId" layoutX="148.0" layoutY="100.0" style="-fx-border-color: #18dcff;" />
+      <Button fx:id="btnHome" layoutX="472.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnHomePageOnAction" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: #18dcff;" text="Home" textFill="#0d0202">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
@@ -38,9 +38,19 @@
           <TableColumn fx:id="colCatName" minWidth="0.0" prefWidth="155.0" text="Category Name" />
         </columns>
       </TableView>
-      <Text fill="#00a8ff" layoutX="186.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Category" textAlignment="CENTER" wrappingWidth="285.291015625">
+      <Text fill="#18dcff" layoutX="186.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Category" textAlignment="CENTER" wrappingWidth="285.291015625">
          <font>
             <Font name="Forte" size="33.0" />
+         </font>
+      </Text>
+      <Text fill="#18dcff" layoutX="147.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category Id">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text fill="#18dcff" layoutX="341.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category Name">
+         <font>
+            <Font name="System Bold" size="13.0" />
          </font>
       </Text>
    </children>
